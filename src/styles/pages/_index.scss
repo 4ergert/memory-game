@@ -2,10 +2,10 @@
 
 .index {
   &_body {
-  @include mix.flex-center;
-  height: 100vh;
-  background-color: #2f3131;
-  overflow: hidden;
+    @include mix.flex-center;
+    height: 100vh;
+    background-color: #2f3131;
+    overflow: hidden;
   }
 
   &_img {
@@ -15,9 +15,45 @@
     transform: translate(-50%, -50%);
   }
 
-  &_title {
-    @include mix.flex-center;
-    color: #fff;
+  &_p {
+    margin: 0;
+    font-size: 48px;
   }
+
 }
 
+#startGameButton {
+  margin-top: 100px;
+  @include mix.flex-center;
+  width: 250px;
+  height: 98px;
+  font-size: 40px;
+  background-color: #f0ea6e;
+  color: #303131;
+  font-weight: 700;
+  border: none;
+  padding: 10px 20px;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 16px;
+  transition: transform 200ms ease;
+}
+
+#startGameButton:hover {
+  transform: scale(1.05);
+  font-size: 45px;
+}
+
+.arrow_in_button {
+  font-size: 40px;
+}
+
+#startGameButton img {
+  transform: rotate(0deg) scale(1);
+  transform-origin: center;
+  transition: transform 200ms ease;
+}
+
+#startGameButton:hover img {
+  transform: rotate(-25.77deg) scale(1.12);
+}
