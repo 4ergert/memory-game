@@ -1,0 +1,24 @@
+@use '../abstract/mixin' as mix;
+
+.index {
+  &_body {
+  @include mix.flex-center;
+  height: 100vh;
+  background-color: #2f3131;
+  overflow: hidden;
+  }
+
+  &_img {
+    position: absolute;
+    top: 77%;
+    left: 180px;
+    transform: translate(-50%, -50%);
+  }
+
+  &_title {
+    @include mix.flex-center;
+    font-size: 140px;
+    color: #fff;
+  }
+}
+
