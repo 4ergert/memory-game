@@ -41,7 +41,15 @@
 
 #startGameButton:hover {
   transform: scale(1.05);
-  font-size: 45px;
+}
+
+.button_label {
+  display: inline-block;
+  transition: transform 500ms ease;
+}
+
+#startGameButton:hover .button_label {
+  transform: scale(1.08);
 }
 
 .arrow_in_button {
