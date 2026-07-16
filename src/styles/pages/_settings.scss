@@ -1,0 +1,79 @@
+@use '../abstract/mixin' as mix;
+@use '../base/base' as base;
+
+.settings {
+  @include mix.flex-center;
+  height: 100vh;
+  padding: 0 170px;
+
+  &_header {
+    margin-bottom: 33px;
+
+    & h2 {
+      padding: 0 16px;
+    }
+  }
+
+  &_content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  &_box {
+    width: 100%;
+    background-color: #0ca2a215;
+  }
+}
+
+.underline {
+  display: flex;
+  align-items: center;
+
+  &_square {
+    width: 16px;
+    height: 16px;
+    rotate: 45deg;
+    margin-left: -8px;
+    background-color: base.$yellow;
+  }
+
+  &_line {
+    width: 251px;
+    height: 4px;
+    background-color: base.$yellow;
+  }
+}
+
+.game_mode {
+  display: flex;
+  flex-direction: column;
+
+  &_header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+}
+
+.theme_button {
+  background-color: transparent;
+  text-align: left;
+  padding-left: 42px;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 16px;
+  width: fit-content;
+  font-weight: 400;
+  font-size: 20px;
+  border: none;
+  margin-bottom: 8px;
+}
+
+.theme_button:hover {
+  cursor: pointer;
+  font-weight: 700;
+} 

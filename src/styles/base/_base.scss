@@ -1,9 +1,12 @@
+$yellow: #f0ea6e;
+$dark: #303131;
+
 body {
 	margin: 0;
 	font-family: 'Red Rose', serif;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #fff;
+	color: $dark;
 }
 
 h1,
@@ -19,14 +22,16 @@ h6 {
 
 h1 {
 	font-size: 140px;
+  color: white;
 }
 
 h2 {
-	font-size: 96px;
+	font-size: 54px;
+  font-weight: 700;
 }
 
 h3 {
-	font-size: 72px;
+	font-size: 24px;
 }
 
 h4 {
