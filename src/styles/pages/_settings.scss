@@ -6,6 +6,8 @@
   height: 100vh;
   padding: 0 170px;
 
+  background: #783c00;
+
   &_header {
     margin-bottom: 33px;
 
@@ -46,9 +48,12 @@
   }
 }
 
-.game_mode {
+.game_mode,
+.choose_player,
+.board_size {
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 
   &_header {
     display: flex;
@@ -58,7 +63,9 @@
   }
 }
 
-.theme_button {
+.theme_button,
+.choose_player_button,
+.board_size_button {
   background-color: transparent;
   text-align: left;
   padding-left: 42px;
