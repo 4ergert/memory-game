@@ -5,6 +5,9 @@
   @include mix.flex-center;
   height: 100vh;
   padding: 0 170px;
+  box-sizing: border-box;
+  max-width: 1440px;
+  margin: 0 auto;
 
   &_header {
     margin-bottom: 33px;
@@ -25,7 +28,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #0ca2a215;
+  }
+
+  &_aside {
+    @include mix.flex-center;
+    align-items: end;
   }
 }
 
@@ -122,4 +129,16 @@
   @include mix.flex-center;
   text-align: center;
   background-color: #0ca2a215;
+  margin-bottom: 16px;
+}
+
+.start_game {
+  @include mix.flex-center;
+  flex-direction: row;
+  width: 600px;
+  height: 98px;
+  background-color: #f6f6f6;
+  color: base.$dark;
+  gap: 16px;
+  font-size: 20px;
 }
