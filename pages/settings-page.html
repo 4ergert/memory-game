@@ -9,15 +9,12 @@
 
 <body class="settings">
 
-  <section class="settings_content">
+  <main class="settings_content">
 
-    <section class="settings_header">
+    <header class="settings_header">
       <h2>Settings</h2>
-      <div class="underline">
-        <div class="underline_square"></div>
-        <div class="underline_line"></div>
-      </div>
-    </section>
+      <template custom-underline></template>
+    </header>
 
     <section class="settings_box">
       <section class="settings_section">
@@ -26,12 +23,17 @@
         <template board-size-section></template>
       </section>
 
-      <section class="settings_feedback">
-
+      <section class="settings_feedback" id="settingsFeedback">
+        <h3>
+          Please <br>
+          choose a theme,<br>
+          player, and board size <br>
+          to start the game.
+        </h3>
       </section>
     </section>
 
-  </section>
+  </main>
 
   <script type="module" src="/src/main.ts"></script>
 </body>

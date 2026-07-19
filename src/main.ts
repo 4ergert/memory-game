@@ -1,5 +1,6 @@
 import './styles/main.scss';
-import { initSettingsButtons, initSettingsSection } from './ts/settings/settings';
+import { renderCustomUnderline, initSettingsButtons, initSettingsSection } from './ts/settings/settings';
 
+renderCustomUnderline();
 initSettingsSection();
 initSettingsButtons();

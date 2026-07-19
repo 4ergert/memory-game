@@ -1,7 +1,17 @@
+export function getCustomUnderlineTemplate(): string {
+  return `
+      <div class="underline">
+        <div class="underline_square"></div>
+        <div class="underline_line"></div>
+      </div>
+  `;
+}
+
 /**
  * Returns the markup for the game theme selection section on the settings page.
  *
  * @returns The HTML string for the game theme section.
+ * 
  */
 export function getThemeSectionTemplate(): string {
   return `
@@ -19,14 +29,7 @@ export function getThemeSectionTemplate(): string {
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Gaming theme
       </button>
-      <button class="theme_button" id="da_projects_theme">
-        <img src="../assets/icons/off.svg" alt="Off Icon">
-        DA Projects theme
-      </button>
-      <button class="theme_button" id="food_theme">
-        <img src="../assets/icons/off.svg" alt="Off Icon">
-        Food theme
-      </button>
+
     </section>
   `;
 }

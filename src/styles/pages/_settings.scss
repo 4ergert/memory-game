@@ -23,6 +23,8 @@
 
   &_box {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
     background-color: #0ca2a215;
   }
 }
@@ -83,4 +85,41 @@
 .board_size_button:hover {
   cursor: pointer;
   font-weight: 700;
-} 
+}
+
+.theme_button.is-selected,
+.choose_player_button.is-selected,
+.board_size_button.is-selected {
+  font-weight: 700;
+}
+
+.theme_button .underline,
+.choose_player_button .underline,
+.board_size_button .underline {
+  rotate: 180deg;
+}
+
+.theme_button .underline,
+.choose_player_button .underline,
+.board_size_button .underline {
+
+  &_line {
+    width: 41px;
+    height: 3px;
+  }
+
+  &_square {
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+  }
+
+}
+
+.settings_feedback {
+  width: 460px;
+  height: 412px;
+  @include mix.flex-center;
+  text-align: center;
+  background-color: #0ca2a215;
+}
