@@ -1,4 +1,5 @@
 import './styles/main.scss';
-import { initSettingsPage } from './ts/settings/settings';
+import { initSettingsSection, initThemeButtons } from './ts/settings/settings';
 
-initSettingsPage();
+initSettingsSection();
+initThemeButtons();

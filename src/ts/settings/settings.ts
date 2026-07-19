@@ -1,22 +1,23 @@
-import { getSettingsSectionsMarkup } from './settings-templates';
+import { getBoardSizeSectionTemplate, getChoosePlayerSectionTemplate, getThemeSectionTemplate } from './settings-templates';
 
 /**
- * Renders the settings page button sections and wires the theme buttons.
+ * Renders the settings sections if their placeholders exist on the page.
  */
-export function initSettingsPage(): void {
-  const settingsSection = document.querySelector<HTMLElement>('.settings_section');
+export function initSettingsSection(): void {
+  const themeSection = document.querySelector<HTMLElement>('[data-theme-section]');
+  const choosePlayerSection = document.querySelector<HTMLElement>('[data-choose-player-section]');
+  const boardSizeSection = document.querySelector<HTMLElement>('[data-board-size-section]');
 
-  if (settingsSection) {
-    settingsSection.innerHTML = getSettingsSectionsMarkup();
-    initThemeButtons();
-  }
+  if (themeSection) themeSection.outerHTML = getThemeSectionTemplate();
+  if (choosePlayerSection) choosePlayerSection.outerHTML = getChoosePlayerSectionTemplate();
+  if (boardSizeSection) boardSizeSection.outerHTML = getBoardSizeSectionTemplate();
 }
 
 /**
  * Registers click handlers for all theme toggle buttons on the settings page.
  * Each click updates the selected button icon and resets the remaining buttons.
  */
-function initThemeButtons(): void {
+export function initThemeButtons(): void {
   const buttons = document.querySelectorAll<HTMLButtonElement>('.theme_button');
 
   buttons.forEach((button) => button.addEventListener('click', () => handleThemeClick(button, buttons)));
