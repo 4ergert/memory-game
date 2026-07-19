@@ -78,7 +78,9 @@
   margin-bottom: 8px;
 }
 
-.theme_button:hover {
+.theme_button:hover,
+.choose_player_button:hover,
+.board_size_button:hover {
   cursor: pointer;
   font-weight: 700;
 } 

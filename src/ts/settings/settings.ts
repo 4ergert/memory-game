@@ -4,33 +4,54 @@ import { getBoardSizeSectionTemplate, getChoosePlayerSectionTemplate, getThemeSe
  * Renders the settings sections if their placeholders exist on the page.
  */
 export function initSettingsSection(): void {
-  const themeSection = document.querySelector<HTMLElement>('[data-theme-section]');
-  const choosePlayerSection = document.querySelector<HTMLElement>('[data-choose-player-section]');
-  const boardSizeSection = document.querySelector<HTMLElement>('[data-board-size-section]');
-
-  if (themeSection) themeSection.outerHTML = getThemeSectionTemplate();
-  if (choosePlayerSection) choosePlayerSection.outerHTML = getChoosePlayerSectionTemplate();
-  if (boardSizeSection) boardSizeSection.outerHTML = getBoardSizeSectionTemplate();
+  renderSection('[theme-section]', getThemeSectionTemplate);
+  renderSection('[choose-player-section]', getChoosePlayerSectionTemplate);
+  renderSection('[board-size-section]', getBoardSizeSectionTemplate);
 }
 
 /**
- * Registers click handlers for all theme toggle buttons on the settings page.
- * Each click updates the selected button icon and resets the remaining buttons.
+ * Replaces a section placeholder with its rendered template markup, if the
+ * placeholder exists on the page.
+ *
+ * @param selector The CSS selector matching the placeholder element.
+ * @param template A function returning the markup to render in its place.
  */
-export function initThemeButtons(): void {
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme_button');
+function renderSection(selector: string, template: () => string): void {
+  const section = document.querySelector<HTMLElement>(selector);
 
-  buttons.forEach((button) => button.addEventListener('click', () => handleThemeClick(button, buttons)));
+  if (section) section.outerHTML = template();
 }
 
 /**
- * Applies the active icon to the selected theme button and the inactive icon
- * to every other theme button in the same button list.
+ * Registers click handlers for the theme, player, and board size toggle
+ * buttons on the settings page.
+ */
+export function initSettingsButtons(): void {
+  initButtonGroup('.theme_button');
+  initButtonGroup('.choose_player_button');
+  initButtonGroup('.board_size_button');
+}
+
+/**
+ * Registers click handlers for one group of toggle buttons so that selecting
+ * a button updates the icons within that same group only.
+ *
+ * @param selector The CSS selector matching the button group.
+ */
+function initButtonGroup(selector: string): void {
+  const buttons = document.querySelectorAll<HTMLButtonElement>(selector);
+
+  buttons.forEach((button) => button.addEventListener('click', () => handleButtonClick(button, buttons)));
+}
+
+/**
+ * Applies the active icon to the selected button and the inactive icon to
+ * every other button in the same button group.
  *
  * @param selected The button that was clicked.
- * @param buttons All available theme buttons.
+ * @param buttons All buttons within the same group.
  */
-function handleThemeClick(selected: HTMLButtonElement, buttons: NodeListOf<HTMLButtonElement>): void {
+function handleButtonClick(selected: HTMLButtonElement, buttons: NodeListOf<HTMLButtonElement>): void {
   buttons.forEach((button) => {
     const icon = button.querySelector('img');
     if (icon) {
