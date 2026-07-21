@@ -136,13 +136,40 @@
 .start_game {
   @include mix.flex-center;
   flex-direction: row;
-  justify-content: space-between;
   padding: 0 32px;
-  width: 600px;
   height: 98px;
   background-color: #f6f6f6;
   color: base.$dark;
   font-size: 20px;
+  gap: 16px;
+
+  &_slash {
+    width: 4px;
+    height: 56px;
+    transform: rotate(19.33deg);
+    background-color: base.$yellow;
+  }
+
+  &_feedback {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.start_game .underline {
+  transform: rotate(289.33deg);
+
+  &_line {
+    width: 53px;
+    height: 4px;
+  }
+
+  &_square {
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+  }
 }
 
 #startGameButton {

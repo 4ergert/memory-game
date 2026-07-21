@@ -84,6 +84,8 @@ function showThemeFeedback(button: HTMLButtonElement): void {
   if (selectedTheme) {
     selectedTheme.textContent = label;
   }
+
+  replaceSlashWithUnderline('themePlayerDivider');
 }
 
 /**
@@ -97,6 +99,8 @@ function showSelectedPlayer(button: HTMLButtonElement): void {
   if (selectedPlayer) {
     selectedPlayer.textContent = getButtonLabel(button) + ' player';
   }
+
+  replaceSlashWithUnderline('playerBoardDivider');
 }
 
 /**
@@ -120,6 +124,19 @@ function showSelectedBoardSize(button: HTMLButtonElement): void {
  */
 function getButtonLabel(button: HTMLButtonElement): string {
   return button.textContent?.trim() ?? '';
+}
+
+/**
+ * Replaces a start section divider slash with the shared underline markup.
+ *
+ * @param dividerId The id of the divider element to replace.
+ */
+function replaceSlashWithUnderline(dividerId: string): void {
+  const divider = document.getElementById(dividerId);
+
+  if (divider && divider.classList.contains('start_game_slash')) {
+    divider.outerHTML = getCustomUnderlineTemplate();
+  }
 }
 
 /**
