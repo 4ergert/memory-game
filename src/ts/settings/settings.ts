@@ -43,8 +43,8 @@ function renderSection(selector: string, template: () => string): void {
  */
 export function initSettingsButtons(): void {
   initButtonGroup('.theme_button', showThemeFeedback);
-  initButtonGroup('.choose_player_button');
-  initButtonGroup('.board_size_button');
+  initButtonGroup('.choose_player_button', showSelectedPlayer);
+  initButtonGroup('.board_size_button', showSelectedBoardSize);
 }
 
 /**
@@ -73,11 +73,53 @@ function initButtonGroup(selector: string, onSelect?: (button: HTMLButtonElement
  */
 function showThemeFeedback(button: HTMLButtonElement): void {
   const feedback = document.getElementById('settingsFeedback');
+  const selectedTheme = document.getElementById('selectedGameTheme');
   const icon = THEME_ICONS[button.id];
+  const label = getButtonLabel(button);
 
   if (feedback && icon) {
-    feedback.innerHTML = `<img src="${icon}" alt="${button.textContent?.trim() ?? ''}">`;
+    feedback.innerHTML = `<img src="${icon}" alt="${label}">`;
   }
+
+  if (selectedTheme) {
+    selectedTheme.textContent = label;
+  }
+}
+
+/**
+ * Displays the selected player label inside the start section.
+ *
+ * @param button The selected player button.
+ */
+function showSelectedPlayer(button: HTMLButtonElement): void {
+  const selectedPlayer = document.getElementById('selectedPlayer');
+
+  if (selectedPlayer) {
+    selectedPlayer.textContent = getButtonLabel(button) + ' player';
+  }
+}
+
+/**
+ * Displays the selected board size label inside the start section.
+ *
+ * @param button The selected board size button.
+ */
+function showSelectedBoardSize(button: HTMLButtonElement): void {
+  const selectedBoardSize = document.getElementById('selectedBoardSize');
+
+  if (selectedBoardSize) {
+    selectedBoardSize.textContent = getButtonLabel(button);
+  }
+}
+
+/**
+ * Returns the trimmed visible label from a settings button.
+ *
+ * @param button The button whose label should be read.
+ * @returns The button label or an empty string.
+ */
+function getButtonLabel(button: HTMLButtonElement): string {
+  return button.textContent?.trim() ?? '';
 }
 
 /**
