@@ -6,6 +6,13 @@ const THEME_ICONS: Record<string, string> = {
   gaming_theme: '../assets/img/gaming_theme.svg',
 };
 
+/** Tracks which settings groups have a selection so far. */
+const selectionState = {
+  theme: false,
+  player: false,
+  boardSize: false,
+};
+
 /**
  * Replaces the custom underline placeholder with its rendered template
  * markup, if the placeholder exists on the page.
@@ -45,6 +52,19 @@ export function initSettingsButtons(): void {
   initButtonGroup('.theme_button', showThemeFeedback);
   initButtonGroup('.choose_player_button', showSelectedPlayer);
   initButtonGroup('.board_size_button', showSelectedBoardSize);
+  initStartGameButton();
+}
+
+/**
+ * Registers a click handler on the start game button so that it navigates
+ * to the memory game page.
+ */
+function initStartGameButton(): void {
+  const startGameButton = document.getElementById('startGameButton');
+
+  startGameButton?.addEventListener('click', () => {
+    window.location.href = './memory-game.html';
+  });
 }
 
 /**
@@ -77,15 +97,15 @@ function showThemeFeedback(button: HTMLButtonElement): void {
   const icon = THEME_ICONS[button.id];
   const label = getButtonLabel(button);
 
-  if (feedback && icon) {
-    feedback.innerHTML = `<img src="${icon}" alt="${label}">`;
-  }
-
+  if (feedback && icon) feedback.innerHTML = `<img src="${icon}" alt="${label}">`;
   if (selectedTheme) {
     selectedTheme.textContent = label;
+    selectedTheme.style.fontWeight = '700';
   }
 
   replaceSlashWithUnderline('themePlayerDivider');
+  selectionState.theme = true;
+  updateStartButtonVisibility();
 }
 
 /**
@@ -98,9 +118,12 @@ function showSelectedPlayer(button: HTMLButtonElement): void {
 
   if (selectedPlayer) {
     selectedPlayer.textContent = getButtonLabel(button) + ' player';
+    selectedPlayer.style.fontWeight = '700';
   }
 
   replaceSlashWithUnderline('playerBoardDivider');
+  selectionState.player = true;
+  updateStartButtonVisibility();
 }
 
 /**
@@ -113,7 +136,24 @@ function showSelectedBoardSize(button: HTMLButtonElement): void {
 
   if (selectedBoardSize) {
     selectedBoardSize.textContent = getButtonLabel(button);
+    selectedBoardSize.style.fontWeight = '700';
   }
+  
+  selectionState.boardSize = true;
+  updateStartButtonVisibility();
+}
+
+/**
+ * Shows the start game button and hides the default start icon once a
+ * theme, player, and board size have all been selected.
+ */
+function updateStartButtonVisibility(): void {
+  const startDefaultIcon = document.getElementById('startDefaultIcon');
+  const startGameButton = document.getElementById('startGameButton');
+  const allSelected = selectionState.theme && selectionState.player && selectionState.boardSize;
+
+  if (startDefaultIcon) startDefaultIcon.hidden = allSelected;
+  if (startGameButton) startGameButton.hidden = !allSelected;
 }
 
 /**
@@ -123,7 +163,7 @@ function showSelectedBoardSize(button: HTMLButtonElement): void {
  * @returns The button label or an empty string.
  */
 function getButtonLabel(button: HTMLButtonElement): string {
-  return button.textContent?.trim() ?? '';
+  return button.textContent;
 }
 
 /**

@@ -1,0 +1,18 @@
+@use '../base/base' as base;
+
+.memory_game {
+  &_body {
+    background-color: base.$dark;
+    color: aliceblue;
+    height: 100vh;
+    padding: 32px 170px;
+    box-sizing: border-box;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+}

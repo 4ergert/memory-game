@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         settings: 'pages/settings-page.html',
+        memoryGame: 'pages/memory-game.html',
       },
     },
   },

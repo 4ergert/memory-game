@@ -153,32 +153,37 @@
   &_feedback {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
   }
 }
 
 .start_game .underline {
+  width: 4px;
+  height: 56px;
+  justify-content: center;
   transform: rotate(289.33deg);
 
   &_line {
-    width: 53px;
+    width: 47px;
     height: 4px;
+    flex-shrink: 0;
   }
 
   &_square {
     width: 12px;
     height: 12px;
     margin-left: -6px;
+    flex-shrink: 0;
   }
 }
 
-#startGameButton {
-  margin: 0;
-  width: 126px;
-  height: 53px;
-  font-size: 20px;
+.startGameButton {
+  margin: 0 !important;
+  width: 126px !important;
+  height: 53px !important;
+  font-size: 20px !important;
 }
 
-#startGameButton:hover img {
+.startGameButton:hover img {
   transform: rotate(-5.33deg) scale(1.12) !important;
 }

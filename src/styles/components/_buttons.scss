@@ -15,6 +15,10 @@
   transition: transform 200ms ease;
 }
 
+#startGameButton[hidden] {
+  display: none;
+}
+
 #startGameButton:hover {
   transform: scale(1.05);
 }
