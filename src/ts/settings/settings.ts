@@ -165,13 +165,13 @@ function updateStartButtonVisibility(): void {
 }
 
 /**
- * Returns the trimmed visible label from a settings button.
+ * Returns the button label from its data-label attribute.
  *
  * @param button The button whose label should be read.
  * @returns The button label or an empty string.
  */
 function getButtonLabel(button: HTMLButtonElement): string {
-  return button.textContent;
+  return button.getAttribute('data-label') || '';
 }
 
 /**

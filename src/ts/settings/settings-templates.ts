@@ -21,11 +21,11 @@ export function getThemeSectionTemplate(): string {
         <h3>Game themes</h3>
       </header>
 
-      <button class="theme_button" id="code_vibes_theme">
+      <button class="theme_button" id="code_vibes_theme" data-label="Code vibes theme">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Code vibes theme
       </button>
-      <button class="theme_button" id="gaming_theme">
+      <button class="theme_button" id="gaming_theme" data-label="Gaming theme">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Gaming theme
       </button>
@@ -47,11 +47,11 @@ export function getChoosePlayerSectionTemplate(): string {
         <h3>Choose player</h3>
       </header>
 
-      <button class="choose_player_button" id="playerBlue">
+      <button class="choose_player_button" id="playerBlue" data-label="1">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Blue
       </button>
-      <button class="choose_player_button" id="playerOrange">
+      <button class="choose_player_button" id="playerOrange" data-label="2">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Orange
       </button>
@@ -72,15 +72,15 @@ export function getBoardSizeSectionTemplate(): string {
         <h3>Board size</h3>
       </header>
 
-      <button class="board_size_button" id="board_4x4">
+      <button class="board_size_button" id="board_4x4" data-label="4x4">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         16 cards
       </button>
-      <button class="board_size_button" id="board_6x6">
+      <button class="board_size_button" id="board_6x6" data-label="6x6">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         24 cards
       </button>
-      <button class="board_size_button" id="board_8x8">
+      <button class="board_size_button" id="board_8x8" data-label="8x8">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         32 cards
       </button>
