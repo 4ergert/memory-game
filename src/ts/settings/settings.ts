@@ -106,6 +106,8 @@ function showThemeFeedback(button: HTMLButtonElement): void {
   replaceSlashWithUnderline('themePlayerDivider');
   selectionState.theme = true;
   updateStartButtonVisibility();
+
+  localStorage.setItem('selectedTheme', label);
 }
 
 /**
@@ -115,15 +117,18 @@ function showThemeFeedback(button: HTMLButtonElement): void {
  */
 function showSelectedPlayer(button: HTMLButtonElement): void {
   const selectedPlayer = document.getElementById('selectedPlayer');
+  const playerLabel = getButtonLabel(button) + ' player';
 
   if (selectedPlayer) {
-    selectedPlayer.textContent = getButtonLabel(button) + ' player';
+    selectedPlayer.textContent = playerLabel;
     selectedPlayer.style.fontWeight = '700';
   }
 
   replaceSlashWithUnderline('playerBoardDivider');
   selectionState.player = true;
   updateStartButtonVisibility();
+
+  localStorage.setItem('selectedPlayer', playerLabel);
 }
 
 /**
@@ -133,14 +138,17 @@ function showSelectedPlayer(button: HTMLButtonElement): void {
  */
 function showSelectedBoardSize(button: HTMLButtonElement): void {
   const selectedBoardSize = document.getElementById('selectedBoardSize');
-
+  const boardSizeLabel = getButtonLabel(button);
+  
   if (selectedBoardSize) {
-    selectedBoardSize.textContent = getButtonLabel(button);
+    selectedBoardSize.textContent = boardSizeLabel;
     selectedBoardSize.style.fontWeight = '700';
   }
   
   selectionState.boardSize = true;
   updateStartButtonVisibility();
+
+  localStorage.setItem('selectedBoardSize', boardSizeLabel);
 }
 
 /**

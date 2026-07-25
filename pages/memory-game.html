@@ -7,23 +7,36 @@
 </head>
 <body class="memory_game_body">
 
-  <main class="memory_game_content">
 
     <header class="memory_game_header">
-      <section class="scoreBoard">
-        Score
+      <section class="score_board">
+        <div class="blue_player">
+          <img src="../public/assets/icons/blue-code-label.svg" alt="blue player label">
+          Blue
+          <span class="blue_player_score">0</span>
+        </div>
+        
+        <div class="orange_player">
+          <img src="../public/assets/icons/orange-code-label.svg" alt="orange player label">
+          Orange
+          <span class="orange_player_score">0</span>
+        </div>
       </section>
 
-      <section class="currentPlayer">
-        Current player:
+      <section class="current_player">
+        Current player: <img src="../public/assets/icons/blue-code-label.svg" alt="current player label" id="currentPlayer">
       </section>
 
-      <button class="exitButton">
+      <button class="exit_button">
+        <img src="../public/assets/icons/exit.svg" alt="exit icon">
         Exit game
       </button>
     </header>
 
-  </main>
+    <section class="memory_game_board">
+
+    </section>
+
 
 <script type="module" src="../src/main.ts"></script>
 </body>
