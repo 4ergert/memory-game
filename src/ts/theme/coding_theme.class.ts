@@ -13,8 +13,12 @@ export class CodingTheme {
   }
 
   setTheme(): void {
-    document.getElementById('bluePlayerImg')?.setAttribute('src', this.playerOneImg);
-    document.getElementById('orangePlayerImg')?.setAttribute('src', this.playerTwoImg);
     document.body.style.backgroundColor = this.backgroundcolor;
+    document.getElementById('bluePlayerImg')?.setAttribute('src', this.playerOneImg);
+    document.getElementById('blueCodingLabel')!.textContent = 'Blue';
+    document.getElementById('orangePlayerImg')?.setAttribute('src', this.playerTwoImg);
+    document.getElementById('orangeCodingLabel')!.textContent = 'Orange';
+
+    document.getElementById('currentPlayer')?.setAttribute('src', this.playerOneImg);
   }
 }
