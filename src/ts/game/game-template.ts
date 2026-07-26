@@ -26,3 +26,14 @@ export function getGamingHeaderTemplate(): string {
     </header>
   `;
 }
+
+export function getCardTemplate(): string {
+  return `
+      <button class="card" type="button">
+        <section class="card__inner">
+          <div class="card__face"></div>
+          <div class="card__face card__face--back"></div>
+        </section>
+      </button>
+    `;
+}

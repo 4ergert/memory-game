@@ -76,7 +76,7 @@ export function getBoardSizeSectionTemplate(): string {
         <img src="../assets/icons/off.svg" alt="Off Icon">
         16 cards
       </button>
-      <button class="board_size_button" id="board_6x4" data-label="6x4">
+      <button class="board_size_button" id="board_4x6" data-label="6x4">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         24 cards
       </button>

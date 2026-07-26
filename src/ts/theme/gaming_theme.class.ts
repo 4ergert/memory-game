@@ -5,6 +5,7 @@ export class GamingTheme {
   playerOneImg: string;
   playerTwoImg: string;
   exitButtonBorderColor: string;
+  cardFaceImg: string;
 
   constructor() {
     this.themeName = 'Gaming theme';
@@ -13,6 +14,7 @@ export class GamingTheme {
     this.playerOneImg = '../assets/icons/blue-gaming-label.svg';
     this.playerTwoImg = '../assets/icons/orange-gaming-label.svg';
     this.exitButtonBorderColor = '#e71c4f';
+    this.cardFaceImg = '../assets/img/gaming-card-face.svg';
     this.setTheme();
   }
 
@@ -22,6 +24,7 @@ export class GamingTheme {
     this.applyScoreBoard();
     this.applyCurrentPlayer();
     this.applyExitButtonHover();
+    this.applyCardFaceStyles();
   }
 
   private applyHeaderBackground(): void {
@@ -60,5 +63,19 @@ export class GamingTheme {
       exitButton.addEventListener('mouseover', () => exitButton.style.border = 'solid 3px ' + this.exitButtonBorderColor);
       exitButton.addEventListener('mouseout', () => exitButton.style.border = 'solid 2px ' + this.exitButtonBorderColor);
     }
+  }
+
+  private applyCardFaceStyles(): void {
+
+    document.querySelectorAll<HTMLElement>('.card__face:not(.card__face--back)').forEach((face) => {
+      face.style.backgroundImage = `url('${this.cardFaceImg}')`;
+      face.style.backgroundSize = 'cover';
+      face.style.borderRadius = '12px';
+    });
+
+    document.querySelectorAll<HTMLElement>('.card__face--back').forEach((face) => {
+      face.style.backgroundImage = 'none';
+      face.style.borderRadius = '12px';
+    });
   }
 }
