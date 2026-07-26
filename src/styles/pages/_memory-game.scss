@@ -20,11 +20,16 @@
     width: 100%;
   }
 
-  // &_board {
-  //   // width: 200px;
-  //   // height: 200px;
-  //   // background-color: aliceblue;
-  // }
+  &_board {
+    width: 100%;
+    max-width: 1040px;
+  }
+}
+
+#field {
+  width: 100%;
+  display: grid;
+  gap: 16px;
 }
 
 .current_player {
@@ -83,8 +88,8 @@
 }
 
 .card {
-  height: 100px;
-  aspect-ratio: 1/1;
+  width: 120px;
+  height: 120px;
   background-color: transparent;
   border: none;
 
