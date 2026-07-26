@@ -17,39 +17,48 @@ export class GamingTheme {
   }
 
   setTheme(): void {
-    document.getElementById('bluePlayerImg')?.setAttribute('src', this.playerOneImg);
-    document.getElementById('orangePlayerImg')?.setAttribute('src', this.playerTwoImg);
     document.body.style.backgroundColor = this.backgroundcolor;
+    this.applyHeaderBackground();
+    this.applyScoreBoard();
+    this.applyCurrentPlayer();
+    this.applyExitButtonHover();
+  }
 
-    const scoreBoard = document.querySelector<HTMLElement>('.score_board');
-    if (scoreBoard) scoreBoard.style.backgroundColor = 'transparent';
-
+  private applyHeaderBackground(): void {
     const header = document.querySelector<HTMLElement>('header');
     if (header) {
       header.style.backgroundColor = this.headerBackgroundColor;
       header.style.borderRadius = '8px';
     }
-
-    const currentPlayerSection = document.getElementById('currentPlayer');
-    if (currentPlayerSection) currentPlayerSection.setAttribute('src', this.playerOneImg);
-
-    const exitButton = document.querySelector<HTMLElement>('.exit_button');
-    if (exitButton) this.applyExitButtonHover(exitButton);
-
   }
 
-  private applyExitButtonHover(exitButton: HTMLElement): void {
-    exitButton.style.backgroundColor = 'transparent';
-    exitButton.style.border = 'solid 2px ' + this.exitButtonBorderColor;
-    exitButton.style.borderRadius = '8px';
-    exitButton.style.boxShadow = 'transparent 0px 0px 0px 0px';
+  private applyScoreBoard(): void {
+    const bluePlayerImg = document.getElementById('bluePlayerImg');
+    const orangePlayer = document.getElementById('orangePlayerImg');
+    const scoreBoard = document.querySelector<HTMLElement>('.score_board');
 
-    exitButton.addEventListener('mouseover', () => {
-      exitButton.style.border = 'solid 3px ' + this.exitButtonBorderColor;
-    });
+    if (bluePlayerImg) bluePlayerImg.setAttribute('src', this.playerOneImg);
+    if (orangePlayer) orangePlayer.setAttribute('src', this.playerTwoImg);
+    if (scoreBoard) scoreBoard.style.backgroundColor = 'transparent';
+  }
 
-    exitButton.addEventListener('mouseout', () => {
+  private applyCurrentPlayer(): void {
+    const currentPlayerSection = document.getElementById('currentPlayer');
+    if (currentPlayerSection) currentPlayerSection.setAttribute('src', this.playerOneImg);
+  }
+
+
+  private applyExitButtonHover(): void {
+    const exitButton = document.querySelector<HTMLElement>('.exit_button');
+
+    if (exitButton) {
+      exitButton.style.backgroundColor = 'transparent';
       exitButton.style.border = 'solid 2px ' + this.exitButtonBorderColor;
-    });
+      exitButton.style.borderRadius = '8px';
+      exitButton.style.boxShadow = 'transparent 0px 0px 0px 0px';
+
+      exitButton.addEventListener('mouseover', () => exitButton.style.border = 'solid 3px ' + this.exitButtonBorderColor);
+      exitButton.addEventListener('mouseout', () => exitButton.style.border = 'solid 2px ' + this.exitButtonBorderColor);
+    }
   }
 }

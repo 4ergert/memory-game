@@ -20,11 +20,11 @@
     width: 100%;
   }
 
-  &_board {
-    width: 200px;
-    height: 200px;
-    background-color: aliceblue;
-  }
+  // &_board {
+  //   // width: 200px;
+  //   // height: 200px;
+  //   // background-color: aliceblue;
+  // }
 }
 
 .current_player {
@@ -82,3 +82,33 @@
   }
 }
 
+.card {
+  height: 100px;
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  border: none;
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    background-color: #000000;
+
+    &--back {
+      transform: rotateY(180deg);
+      background-color: #ff0000;
+    }
+  }
+
+  &.is-flipped .card__inner {
+    transform: rotateY(180deg);
+  }
+}
