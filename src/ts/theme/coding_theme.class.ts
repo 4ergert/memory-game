@@ -4,7 +4,14 @@ export class CodingTheme {
   playerOneImg: string;
   playerTwoImg: string;
   cardFaceImg: string;
+  cards: string[] = CodingTheme.getCardImages();
 
+  static getCardImages(): string[] {
+    return Array.from({ length: 18 }, (_, index) => {
+      const number = String(index + 1).padStart(2, '0');
+      return `../assets/img/theme/coding/${number}.svg`;
+    });
+  }
 
   constructor() {
     this.themeName = 'Code vibes theme';
@@ -34,7 +41,11 @@ export class CodingTheme {
     });
 
     document.querySelectorAll<HTMLElement>('.card__face--back').forEach((face) => {
-      face.style.backgroundImage = 'none';
+      const image = face.getAttribute('data-card-image');
+      face.style.backgroundImage = image ? `url('${image}')` : 'none';
+      face.style.backgroundSize = 'cover';
+      face.style.backgroundPosition = 'center';
+      face.style.backgroundRepeat = 'no-repeat';
     });
   }
 }

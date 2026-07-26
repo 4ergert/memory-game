@@ -5,6 +5,8 @@ import { GamingTheme } from './ts/theme/gaming_theme.class';
 import { renderGamingHeader, renderGameBoard } from './ts/game/game';
 import { flipCards } from './ts/game/cards';
 
+
+
 if (document.body.classList.contains('settings')) {
   renderCustomUnderline();
   initSettingsSection();
@@ -13,6 +15,7 @@ if (document.body.classList.contains('settings')) {
 
 if (document.body.classList.contains('memory_game_body')) {
   const selectedTheme = localStorage.getItem('selectedTheme');
+  const selectedPlayer = localStorage.getItem('selectedPlayer');
 
   renderGamingHeader();
   renderGameBoard();
@@ -28,4 +31,5 @@ if (document.body.classList.contains('memory_game_body')) {
     default:
       console.warn('No valid theme selected');
   }
+
 } 
