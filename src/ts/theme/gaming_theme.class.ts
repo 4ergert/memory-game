@@ -69,7 +69,6 @@ export class GamingTheme {
 
     document.querySelectorAll<HTMLElement>('.card__face:not(.card__face--back)').forEach((face) => {
       face.style.backgroundImage = `url('${this.cardFaceImg}')`;
-      face.style.backgroundSize = 'cover';
       face.style.borderRadius = '12px';
     });
 

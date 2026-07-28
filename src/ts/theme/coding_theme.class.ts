@@ -37,15 +37,11 @@ export class CodingTheme {
   private applyCardFaceStyles(): void {
     document.querySelectorAll<HTMLElement>('.card__face:not(.card__face--back)').forEach((face) => {
       face.style.backgroundImage = `url('${this.cardFaceImg}')`;
-      face.style.backgroundSize = 'cover';
     });
 
     document.querySelectorAll<HTMLElement>('.card__face--back').forEach((face) => {
       const image = face.getAttribute('data-card-image');
       face.style.backgroundImage = image ? `url('${image}')` : 'none';
-      face.style.backgroundSize = 'cover';
-      face.style.backgroundPosition = 'center';
-      face.style.backgroundRepeat = 'no-repeat';
     });
   }
 }

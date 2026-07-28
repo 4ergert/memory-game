@@ -1,4 +1,5 @@
 import { getGamingHeaderTemplate, getCardTemplate } from '../game/game-template';
+import { initQuitGameModal } from '../components/modal';
 import { CodingTheme } from '../theme/coding_theme.class';
 
 /**
@@ -26,9 +27,7 @@ function shuffleCards(cards: string[]): string[] {
 function getThemeCardImages(): string[] {
   const selectedTheme = localStorage.getItem('selectedTheme') ?? 'Code vibes theme';
 
-  if (selectedTheme === 'Gaming theme') {
-    return ['../assets/img/gaming-card-face.svg'];
-  }
+  if (selectedTheme === 'Gaming theme') return ['../assets/img/gaming-card-face.svg'];
 
   return CodingTheme.getCardImages();
 }
@@ -52,9 +51,6 @@ function renderBackFaceImages(cardCount: number): void {
 
     face.setAttribute('data-card-image', image ?? '');
     face.style.backgroundImage = image ? `url('${image}')` : 'none';
-    face.style.backgroundSize = 'cover';
-    face.style.backgroundPosition = 'center';
-    face.style.backgroundRepeat = 'no-repeat';
   });
 }
 
@@ -64,6 +60,8 @@ function renderBackFaceImages(cardCount: number): void {
 export function renderGamingHeader(): void {
   const refHeaderSection = document.querySelector<HTMLElement>('[header-section]');
   if (refHeaderSection) refHeaderSection.outerHTML = getGamingHeaderTemplate();
+
+  initQuitGameModal();
 }
 
 /**

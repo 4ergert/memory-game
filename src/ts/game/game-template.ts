@@ -19,7 +19,7 @@ export function getGamingHeaderTemplate(): string {
         Current player: <img id="currentPlayer" src="" alt="current player label">
       </section>
 
-      <button class="exit_button">
+      <button class="exit_button" type="button">
         <img src="../assets/icons/exit.svg" alt="exit icon">
         Exit game
       </button>
