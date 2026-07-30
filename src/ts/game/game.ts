@@ -1,4 +1,4 @@
-import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate } from '../game/game-template';
+import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate, getGameSectionTemplate } from '../game/game-template';
 import { CodingTheme } from '../theme/coding_theme.class';
 
 /**
@@ -18,6 +18,11 @@ function shuffleCards(cards: string[]): string[] {
   return shuffledCards;
 }
 
+/**
+ * Liefert die verfügbaren Kartenbilder für das aktuell ausgewählte Theme.
+ *
+ * @returns Eine Liste von Bildpfaden für die Kartenrückseiten.
+ */
 /**
  * Liefert die verfügbaren Kartenbilder für das aktuell ausgewählte Theme.
  *
@@ -80,6 +85,23 @@ export function renderGameBoard(): void {
   renderBackFaceImages(cardCount);
 }
 
+/**
+ * Rendert den Spielbereich in die Seite.
+ *
+ * Der vorhandene Platzhalter mit dem Attribut `[game-section]` wird durch
+ * das Spielabschnitts-Template ersetzt.
+ */
+export function renderGameSection(): void {
+  const refGameSection = document.querySelector<HTMLElement>('[game-section]');
+  if (refGameSection) refGameSection.outerHTML = getGameSectionTemplate();
+}
+
+/**
+ * Rendert das Quit-Game-Modal in die Seite.
+ *
+ * Der Platzhalter mit dem Attribut `[quitGameModal-section]` wird durch das
+ * Quit-Dialog-Template ersetzt.
+ */
 export function renderQuitGameModal(): void {
   const refQuitGameModalSection = document.querySelector<HTMLElement>('[quitGameModal-section]');
   if (refQuitGameModalSection) refQuitGameModalSection.outerHTML = getQuitGameModalTemplate();

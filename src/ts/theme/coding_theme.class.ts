@@ -29,9 +29,14 @@ export class CodingTheme {
     document.getElementById('orangePlayerImg')?.setAttribute('src', this.playerTwoImg);
     document.getElementById('orangeCodingLabel')!.textContent = 'Orange';
 
-    document.getElementById('currentPlayer')?.setAttribute('src', this.playerOneImg);
+    document.getElementById('currentPlayer')?.setAttribute('src', this.getSelectedPlayerImage());
 
     this.applyCardFaceStyles();
+  }
+
+  private getSelectedPlayerImage(): string {
+    const selectedPlayer = localStorage.getItem('selectedPlayer') ?? '1 player';
+    return selectedPlayer.startsWith('2') ? this.playerTwoImg : this.playerOneImg;
   }
 
   private applyCardFaceStyles(): void {

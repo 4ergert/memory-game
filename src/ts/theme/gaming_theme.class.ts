@@ -47,9 +47,13 @@ export class GamingTheme {
 
   private applyCurrentPlayer(): void {
     const currentPlayerSection = document.getElementById('currentPlayer');
-    if (currentPlayerSection) currentPlayerSection.setAttribute('src', this.playerOneImg);
+    if (currentPlayerSection) currentPlayerSection.setAttribute('src', this.getSelectedPlayerImage());
   }
 
+  private getSelectedPlayerImage(): string {
+    const selectedPlayer = localStorage.getItem('selectedPlayer') ?? '1 player';
+    return selectedPlayer.startsWith('2') ? this.playerTwoImg : this.playerOneImg;
+  }
 
   private applyExitButtonHover(): void {
     const exitButton = document.querySelector<HTMLElement>('.exit_button');

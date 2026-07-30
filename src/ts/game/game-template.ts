@@ -38,6 +38,16 @@ export function getCardTemplate(): string {
     `;
 }
 
+export function getGameSectionTemplate(): string {
+  return `
+      <section class="memory_game_board">
+    <section id="field">
+      <!-- Cards rendered here -->
+    </section>
+  </section>
+  `;
+}
+
 export function getQuitGameModalTemplate(): string {
   return `
     <dialog id="quitGameModal">
