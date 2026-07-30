@@ -2,8 +2,9 @@ import './styles/main.scss';
 import { renderCustomUnderline, initSettingsButtons, initSettingsSection, } from './ts/settings/settings';
 import { CodingTheme } from './ts/theme/coding_theme.class';
 import { GamingTheme } from './ts/theme/gaming_theme.class';
-import { renderGamingHeader, renderGameBoard } from './ts/game/game';
+import { renderGamingHeader, renderGameBoard, renderQuitGameModal } from './ts/game/game';
 import { flipCards } from './ts/game/cards';
+import { initQuitGameModal } from './ts/components/modal';
 
 
 
@@ -19,6 +20,8 @@ if (document.body.classList.contains('memory_game_body')) {
 
   renderGamingHeader();
   renderGameBoard();
+  renderQuitGameModal();
+  initQuitGameModal();
   flipCards();
 
   switch (selectedTheme) {

@@ -37,3 +37,15 @@ export function getCardTemplate(): string {
       </button>
     `;
 }
+
+export function getQuitGameModalTemplate(): string {
+  return `
+    <dialog id="quitGameModal">
+    <h6>Are you sure you want to quit <br> the game?</h6>
+    <div class="modal_buttons">
+      <button id="quitGameModal_backToGame_button">Back to game</button>
+      <button id="quitGameModal_exitGame_button">Exit game</button>
+    </div>
+  </dialog>
+  `;
+}

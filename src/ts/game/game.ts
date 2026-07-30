@@ -1,5 +1,4 @@
-import { getGamingHeaderTemplate, getCardTemplate } from '../game/game-template';
-import { initQuitGameModal } from '../components/modal';
+import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate } from '../game/game-template';
 import { CodingTheme } from '../theme/coding_theme.class';
 
 /**
@@ -61,7 +60,6 @@ export function renderGamingHeader(): void {
   const refHeaderSection = document.querySelector<HTMLElement>('[header-section]');
   if (refHeaderSection) refHeaderSection.outerHTML = getGamingHeaderTemplate();
 
-  initQuitGameModal();
 }
 
 /**
@@ -80,5 +78,10 @@ export function renderGameBoard(): void {
   refField.style.gridTemplateColumns = `repeat(${columns}, 120px)`;
   refField.innerHTML = Array.from({ length: cardCount }, getCardTemplate).join('');
   renderBackFaceImages(cardCount);
+}
+
+export function renderQuitGameModal(): void {
+  const refQuitGameModalSection = document.querySelector<HTMLElement>('[quitGameModal-section]');
+  if (refQuitGameModalSection) refQuitGameModalSection.outerHTML = getQuitGameModalTemplate();
 }
 
