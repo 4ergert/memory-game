@@ -8,6 +8,7 @@ export default defineConfig({
         main: 'index.html',
         settings: 'pages/settings-page.html',
         memoryGame: 'pages/memory-game.html',
+        gameOver: 'pages/game-over-page.html',
       },
     },
   },

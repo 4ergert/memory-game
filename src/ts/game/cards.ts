@@ -23,6 +23,20 @@ function updateScore(): void {
     blueScoreElement.textContent = String(blueScore);
     orangeScoreElement.textContent = String(orangeScore);
   }
+
+  saveFinalScores();
+}
+
+function isGameComplete(): boolean {
+  const cards = document.querySelectorAll('.card');
+  const matchedCards = document.querySelectorAll('.card.is-matched');
+
+  return cards.length === matchedCards.length;
+}
+
+function saveFinalScores(): void {
+  localStorage.setItem('blueScore', String(blueScore));
+  localStorage.setItem('orangeScore', String(orangeScore));
 }
 
 function resetSelectedCards(): void {
@@ -48,6 +62,10 @@ function handleMatch(): void {
   isComparing = false;
   updateScore();
   updateCurrentPlayer();
+
+  if (isGameComplete()) {
+    window.location.href = './game-over-page.html';
+  }
 }
 
 export function flipCards(): void {

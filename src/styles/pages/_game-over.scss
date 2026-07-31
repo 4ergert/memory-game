@@ -1,0 +1,33 @@
+@use '../base/base' as base;
+@use '../abstract/mixin' as mix;
+
+.game-over-page {
+  height: 100vh;
+  @include mix.flex-center;
+  background-color: base.$dark;
+  text-align: center;
+
+
+  & h1 {
+    font-weight: 700;
+    color: #4dd5bc;
+    text-shadow: #e0f8f4 -5px -1px 2px;
+  }
+
+  & p {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 400;
+  }
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  gap: 124px;
+
+  .score_board {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
