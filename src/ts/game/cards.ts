@@ -1,99 +1,146 @@
-type CardElement = HTMLButtonElement & {
-  matched?: boolean;
-};
+import type { GameTheme, PlayerColor } from '../theme/theme';
 
-let selectedCards: CardElement[] = [];
-let isComparing = false;
-let blueScore = 0;
-let orangeScore = 0;
-let currentPlayer: 'blue' | 'orange' = 'blue';
+class Card {
+  flipped = false;
+  matched = false;
 
-function updateCurrentPlayer(): void {
-  const currentPlayerImg = document.getElementById('currentPlayer') as HTMLImageElement | null;
-  if (!currentPlayerImg) return;
+  constructor(
+    private readonly element: HTMLButtonElement,
+    readonly image: string | null,
+  ) {}
 
-  currentPlayerImg.setAttribute('src', currentPlayer === 'blue' ? '../assets/icons/blue-code-label.svg' : '../assets/icons/orange-code-label.svg');
-}
-
-function updateScore(): void {
-  const blueScoreElement = document.querySelector<HTMLElement>('.blue_player_score');
-  const orangeScoreElement = document.querySelector<HTMLElement>('.orange_player_score');
-
-  if (blueScoreElement && orangeScoreElement) {
-    blueScoreElement.textContent = String(blueScore);
-    orangeScoreElement.textContent = String(orangeScore);
+  flip(): void {
+    this.flipped = true;
+    this.element.classList.add('is-flipped');
   }
 
-  saveFinalScores();
-}
-
-function isGameComplete(): boolean {
-  const cards = document.querySelectorAll('.card');
-  const matchedCards = document.querySelectorAll('.card.is-matched');
-
-  return cards.length === matchedCards.length;
-}
-
-function saveFinalScores(): void {
-  localStorage.setItem('blueScore', String(blueScore));
-  localStorage.setItem('orangeScore', String(orangeScore));
-}
-
-function resetSelectedCards(): void {
-  selectedCards.forEach((card) => card.classList.remove('is-flipped'));
-  selectedCards = [];
-  isComparing = false;
-  currentPlayer = currentPlayer === 'blue' ? 'orange' : 'blue';
-  updateCurrentPlayer();
-}
-
-function handleMatch(): void {
-  if (currentPlayer === 'blue') {
-    blueScore += 1;
-  } else {
-    orangeScore += 1;
+  reset(): void {
+    this.flipped = false;
+    this.element.classList.remove('is-flipped');
   }
 
-  selectedCards.forEach((card) => {
-    card.matched = true;
-    card.classList.add('is-matched');
-  });
-  selectedCards = [];
-  isComparing = false;
-  updateScore();
-  updateCurrentPlayer();
-
-  if (isGameComplete()) {
-    window.location.href = './game-over-page.html';
+  match(): void {
+    this.matched = true;
+    this.element.classList.add('is-matched');
   }
 }
 
-export function flipCards(): void {
-  const refField = document.getElementById('field');
-  if (!refField) return;
+class Game {
+  private readonly cards = new WeakMap<HTMLButtonElement, Card>();
+  private selectedCards: Card[] = [];
+  private isComparing = false;
+  private blueScore = 0;
+  private orangeScore = 0;
+  private currentPlayer: PlayerColor;
 
-  updateCurrentPlayer();
+  constructor(
+    private readonly field: HTMLElement,
+    private readonly theme: GameTheme,
+  ) {
+    this.currentPlayer = getStartingPlayer();
+  }
 
-  refField.addEventListener('click', (event) => {
-    const card = (event.target as HTMLElement).closest('.card') as CardElement | null;
-    if (!card || card.matched || isComparing || card.classList.contains('is-flipped')) return;
+  start(): void {
+    this.resetScores();
+    this.updateCurrentPlayer();
+    this.field.addEventListener('click', this.handleCardClick);
+  }
 
-    card.classList.add('is-flipped');
-    selectedCards.push(card);
+  private readonly handleCardClick = (event: MouseEvent): void => {
+    const element = (event.target as HTMLElement).closest<HTMLButtonElement>('.card');
+    if (!element) return;
 
-    if (selectedCards.length < 2) return;
+    const card = this.getCard(element);
+    if (card.matched || card.flipped || this.isComparing) return;
 
-    isComparing = true;
+    this.selectCard(card);
+  };
 
-    const [firstCard, secondCard] = selectedCards;
-    const firstImage = firstCard.querySelector<HTMLElement>('.card__face--back')?.getAttribute('data-card-image');
-    const secondImage = secondCard.querySelector<HTMLElement>('.card__face--back')?.getAttribute('data-card-image');
+  private selectCard(card: Card): void {
+    card.flip();
+    this.selectedCards.push(card);
+    if (this.selectedCards.length < 2) return;
 
-    if (firstImage === secondImage) {
-      window.setTimeout(() => handleMatch(), 400);
-      return;
-    }
+    this.isComparing = true;
+    this.compareSelectedCards();
+  }
 
-    window.setTimeout(() => resetSelectedCards(), 800);
-  });
+  private compareSelectedCards(): void {
+    const [firstCard, secondCard] = this.selectedCards;
+    const isMatch = firstCard.image === secondCard.image;
+    window.setTimeout(isMatch ? this.handleMatch : this.handleMiss, isMatch ? 400 : 800);
+  }
+
+  private readonly handleMatch = (): void => {
+    this.selectedCards.forEach((card) => card.match());
+    this.addPoint();
+    this.finishTurn();
+    if (this.isComplete()) window.location.href = './game-over-page.html';
+  };
+
+  private readonly handleMiss = (): void => {
+    this.selectedCards.forEach((card) => card.reset());
+    this.currentPlayer = this.currentPlayer === 'blue' ? 'orange' : 'blue';
+    this.finishTurn();
+  };
+
+  private finishTurn(): void {
+    this.selectedCards = [];
+    this.isComparing = false;
+    this.updateCurrentPlayer();
+  }
+
+  private getCard(element: HTMLButtonElement): Card {
+    const existingCard = this.cards.get(element);
+    if (existingCard) return existingCard;
+
+    const image = element.querySelector('.card__face--back')?.getAttribute('data-card-image') ?? null;
+    const card = new Card(element, image);
+    this.cards.set(element, card);
+    return card;
+  }
+
+  private addPoint(): void {
+    if (this.currentPlayer === 'blue') this.blueScore += 1;
+    else this.orangeScore += 1;
+
+    this.updateScores();
+  }
+
+  private resetScores(): void {
+    this.blueScore = 0;
+    this.orangeScore = 0;
+    this.updateScores();
+  }
+
+  private updateScores(): void {
+    setScore('.blue_player_score', this.blueScore);
+    setScore('.orange_player_score', this.orangeScore);
+    localStorage.setItem('blueScore', String(this.blueScore));
+    localStorage.setItem('orangeScore', String(this.orangeScore));
+  }
+
+  private updateCurrentPlayer(): void {
+    const playerImage = document.getElementById('currentPlayer');
+    playerImage?.setAttribute('src', this.theme.playerImages[this.currentPlayer]);
+  }
+
+  private isComplete(): boolean {
+    return this.field.querySelectorAll('.card').length === this.field.querySelectorAll('.card.is-matched').length;
+  }
+}
+
+function getStartingPlayer(): PlayerColor {
+  const selectedPlayer = localStorage.getItem('selectedPlayer') ?? '1 player';
+  return selectedPlayer.startsWith('2') ? 'orange' : 'blue';
+}
+
+function setScore(selector: string, score: number): void {
+  const element = document.querySelector<HTMLElement>(selector);
+  if (element) element.textContent = String(score);
+}
+
+export function startGame(theme: GameTheme): void {
+  const field = document.getElementById('field');
+  if (field) new Game(field, theme).start();
 }

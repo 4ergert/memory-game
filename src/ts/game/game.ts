@@ -1,5 +1,5 @@
 import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate, getGameSectionTemplate } from '../game/game-template';
-import { CodingTheme } from '../theme/coding_theme.class';
+import { getSelectedTheme } from '../theme/theme';
 
 /**
  * Mischt ein Array von Kartenbildern zufällig durch.
@@ -29,11 +29,7 @@ function shuffleCards(cards: string[]): string[] {
  * @returns Eine Liste von Bildpfaden für die Kartenrückseiten.
  */
 function getThemeCardImages(): string[] {
-  const selectedTheme = localStorage.getItem('selectedTheme') ?? 'Code vibes theme';
-
-  if (selectedTheme === 'Gaming theme') return ['../assets/img/gaming-card-face.svg'];
-
-  return CodingTheme.getCardImages();
+  return getSelectedTheme().cardImages;
 }
 
 /**
