@@ -42,7 +42,8 @@ function renderBackFaceImages(cardCount: number): void {
   if (backFaces.length === 0) return;
 
   const pairCount = Math.max(1, Math.floor(cardCount / 2));
-  const availableImages = getThemeCardImages();
+  const theme = getSelectedTheme();
+  const availableImages = theme.cardImages;
   const selectedImages = Array.from({ length: pairCount }, (_, index) => availableImages[index % availableImages.length]);
   const randomizedCardImages = shuffleCards([...selectedImages, ...selectedImages]).slice(0, cardCount);
 
@@ -50,8 +51,22 @@ function renderBackFaceImages(cardCount: number): void {
     const image = randomizedCardImages[index];
 
     face.setAttribute('data-card-image', image ?? '');
-    face.style.backgroundImage = image ? `url('${image}')` : 'none';
+    face.style.backgroundImage = theme.cardImageMaxSize || !image ? 'none' : `url('${image}')`;
+    renderCardImage(face, image, theme.cardImageMaxSize);
   });
+}
+
+function renderCardImage(face: HTMLElement, source: string | undefined, maxSize?: number): void {
+  face.querySelector('.card__image')?.remove();
+  if (!source || !maxSize) return;
+
+  const image = document.createElement('img');
+  image.className = 'card__image';
+  image.src = source;
+  image.alt = '';
+  image.style.maxWidth = `${maxSize}px`;
+  image.style.maxHeight = `${maxSize}px`;
+  face.append(image);
 }
 
 /**

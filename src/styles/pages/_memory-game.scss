@@ -110,10 +110,19 @@
     background-repeat: no-repeat;
 
     &--back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transform: rotateY(180deg);
       background-image: none;
       background-color: #ffffff;
     }
+  }
+
+  &__image {
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
   }
 
   &.is-flipped .card__inner {

@@ -4,6 +4,7 @@ export type GameTheme = {
   backgroundColor: string;
   cardFaceImage: string;
   cardImages: string[];
+  cardImageMaxSize?: number;
   exitButtonBorderColor?: string;
   headerBackgroundColor?: string;
   playerImages: Record<PlayerColor, string>;
@@ -13,6 +14,11 @@ export type GameTheme = {
 const codingCardImages = Array.from({ length: 18 }, (_, index) => {
   const number = String(index + 1).padStart(2, '0');
   return `../assets/img/theme/coding/${number}.svg`;
+});
+
+const gamingCardImages = Array.from({ length: 18 }, (_, index) => {
+  const number = String(index + 1).padStart(2, '0');
+  return `../assets/img/theme/gaming/${number}.svg`;
 });
 
 const themes: Record<string, GameTheme> = {
@@ -29,7 +35,8 @@ const themes: Record<string, GameTheme> = {
   'Gaming theme': {
     backgroundColor: '#294f60',
     cardFaceImage: '../assets/img/gaming-card-face.svg',
-    cardImages: ['../assets/img/gaming-card-face.svg'],
+    cardImages: gamingCardImages,
+    cardImageMaxSize: 70,
     exitButtonBorderColor: '#e71c4f',
     headerBackgroundColor: '#535d75',
     playerImages: {

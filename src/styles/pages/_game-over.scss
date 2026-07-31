@@ -7,7 +7,6 @@
   background-color: base.$dark;
   text-align: center;
 
-
   & h1 {
     font-size: 150px;
     font-weight: 700;
@@ -51,6 +50,22 @@
     animation: winner-feedback-enter 500ms ease-out both;
   }
 
+  &.is-draw {
+    justify-content: center;
+
+    #winnerFeedbackTitle {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    #winnerName {
+      font-size: 128px;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: #e0f8f4 -5px -1px 2px;
+    }
+  }
+
   & p {
     font-size: 40px;
     font-weight: 400;
@@ -69,6 +84,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+#confetti {
+  margin-top: -20px;
 }
 
 #winnerName {

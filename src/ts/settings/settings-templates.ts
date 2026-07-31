@@ -72,7 +72,7 @@ export function getBoardSizeSectionTemplate(): string {
         <h3>Board size</h3>
       </header>
 
-      <button class="board_size_button" id="board_4x4" data-label="2x2">
+      <button class="board_size_button" id="board_4x4" data-label="4x4">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         16 cards
       </button>
