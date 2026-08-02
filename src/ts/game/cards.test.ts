@@ -1,14 +1,13 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { startGame } from './cards';
-import type { GameTheme } from '../theme/theme';
+import { startGame } from './game.class';
+import { Theme } from '../model/theme.class';
 
-const theme: GameTheme = {
-  backgroundColor: '#000000',
-  cardFaceImage: '',
-  cardImages: [],
-  playerImages: { blue: 'blue.svg', orange: 'orange.svg' },
-  scoreBoardBackgroundColor: 'transparent',
-};
+const theme = new Theme();
+theme.backgroundColor = '#000000';
+theme.cardFaceImage = '';
+theme.cardImages = [];
+theme.playerImages = { blue: 'blue.svg', orange: 'orange.svg' };
+theme.scoreBoardBackgroundColor = 'transparent';
 
 function renderGame(images: string[]): HTMLButtonElement[] {
   document.body.innerHTML = `

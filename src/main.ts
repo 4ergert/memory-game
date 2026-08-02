@@ -2,7 +2,7 @@ import './styles/main.scss';
 import { renderCustomUnderline, initSettingsButtons, initSettingsSection, } from './ts/settings/settings';
 import { applyTheme, getSelectedTheme } from './ts/theme/theme';
 import { renderGamingHeader, renderGameBoard, renderQuitGameModal, renderGameSection } from './ts/game/game';
-import { startGame } from './ts/game/cards';
+import { startGame } from './ts/game/game.class';
 import { initQuitGameModal } from './ts/components/modal';
 
 

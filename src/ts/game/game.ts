@@ -19,20 +19,6 @@ function shuffleCards(cards: string[]): string[] {
 }
 
 /**
- * Liefert die verfügbaren Kartenbilder für das aktuell ausgewählte Theme.
- *
- * @returns Eine Liste von Bildpfaden für die Kartenrückseiten.
- */
-/**
- * Liefert die verfügbaren Kartenbilder für das aktuell ausgewählte Theme.
- *
- * @returns Eine Liste von Bildpfaden für die Kartenrückseiten.
- */
-function getThemeCardImages(): string[] {
-  return getSelectedTheme().cardImages;
-}
-
-/**
  * Rendert die Rückseiten der Karten mit zufällig ausgewählten Bildpaaren.
  *
  * @param cardCount - Die Anzahl der Karten auf dem aktuellen Spielfeld.
@@ -43,8 +29,7 @@ function renderBackFaceImages(cardCount: number): void {
 
   const pairCount = Math.max(1, Math.floor(cardCount / 2));
   const theme = getSelectedTheme();
-  const availableImages = theme.cardImages;
-  const selectedImages = Array.from({ length: pairCount }, (_, index) => availableImages[index % availableImages.length]);
+  const selectedImages = Array.from({ length: pairCount }, (_, index) => theme.getCardImage(index));
   const randomizedCardImages = shuffleCards([...selectedImages, ...selectedImages]).slice(0, cardCount);
 
   backFaces.forEach((face, index) => {

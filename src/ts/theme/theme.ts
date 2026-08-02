@@ -1,50 +1,13 @@
-export type PlayerColor = 'blue' | 'orange';
+import { Theme, type PlayerColor } from '../model/theme.class';
+import { CodingTheme } from '../model/coding_theme.class';
+import { GamingTheme } from '../model/gaming_theme.class';
 
-export type GameTheme = {
-  backgroundColor: string;
-  cardFaceImage: string;
-  cardImages: string[];
-  cardImageMaxSize?: number;
-  exitButtonBorderColor?: string;
-  headerBackgroundColor?: string;
-  playerImages: Record<PlayerColor, string>;
-  scoreBoardBackgroundColor: string;
-};
-
-const codingCardImages = Array.from({ length: 18 }, (_, index) => {
-  const number = String(index + 1).padStart(2, '0');
-  return `../assets/img/theme/coding/${number}.svg`;
-});
-
-const gamingCardImages = Array.from({ length: 18 }, (_, index) => {
-  const number = String(index + 1).padStart(2, '0');
-  return `../assets/img/theme/gaming/${number}.svg`;
-});
+export type { PlayerColor } from '../model/theme.class';
+export type GameTheme = Theme;
 
 const themes: Record<string, GameTheme> = {
-  'Code vibes theme': {
-    backgroundColor: '#303131',
-    cardFaceImage: '../assets/img/coding-card-face.svg',
-    cardImages: codingCardImages,
-    playerImages: {
-      blue: '../assets/icons/blue-code-label.svg',
-      orange: '../assets/icons/orange-code-label.svg',
-    },
-    scoreBoardBackgroundColor: '#415652',
-  },
-  'Gaming theme': {
-    backgroundColor: '#294f60',
-    cardFaceImage: '../assets/img/gaming-card-face.svg',
-    cardImages: gamingCardImages,
-    cardImageMaxSize: 70,
-    exitButtonBorderColor: '#e71c4f',
-    headerBackgroundColor: '#535d75',
-    playerImages: {
-      blue: '../assets/icons/blue-gaming-label.svg',
-      orange: '../assets/icons/orange-gaming-label.svg',
-    },
-    scoreBoardBackgroundColor: 'transparent',
-  },
+  'Code vibes theme': new CodingTheme(),
+  'Gaming theme': new GamingTheme(),
 };
 
 export function getSelectedTheme(): GameTheme {
@@ -61,8 +24,8 @@ export function applyTheme(theme: GameTheme): void {
 }
 
 function setPlayerLabels(theme: GameTheme): void {
-  setImageSource('bluePlayerImg', theme.playerImages.blue);
-  setImageSource('orangePlayerImg', theme.playerImages.orange);
+  setImageSource('bluePlayerImg', theme.getPlayerImage('blue'));
+  setImageSource('orangePlayerImg', theme.getPlayerImage('orange'));
   setText('blueCodingLabel', 'Blue');
   setText('orangeCodingLabel', 'Orange');
 }
