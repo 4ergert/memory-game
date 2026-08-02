@@ -98,11 +98,7 @@ function showThemeFeedback(button: HTMLButtonElement): void {
   const label = getButtonLabel(button);
 
   if (feedback && icon) feedback.innerHTML = `<img src="${icon}" alt="${label}">`;
-  if (selectedTheme) {
-    selectedTheme.textContent = label;
-    selectedTheme.style.fontWeight = '700';
-  }
-
+  setSelectedSetting(selectedTheme, label);
   replaceSlashWithUnderline('themePlayerDivider');
   selectionState.theme = true;
   updateStartButtonVisibility();
@@ -117,13 +113,9 @@ function showThemeFeedback(button: HTMLButtonElement): void {
  */
 function showSelectedPlayer(button: HTMLButtonElement): void {
   const selectedPlayer = document.getElementById('selectedPlayer');
-  const playerLabel = getButtonLabel(button) + ' player';
+  const playerLabel = 'Player ' + getButtonLabel(button);
 
-  if (selectedPlayer) {
-    selectedPlayer.textContent = playerLabel;
-    selectedPlayer.style.fontWeight = '700';
-  }
-
+  setSelectedSetting(selectedPlayer, playerLabel);
   replaceSlashWithUnderline('playerBoardDivider');
   selectionState.player = true;
   updateStartButtonVisibility();
@@ -139,12 +131,8 @@ function showSelectedPlayer(button: HTMLButtonElement): void {
 function showSelectedBoardSize(button: HTMLButtonElement): void {
   const selectedBoardSize = document.getElementById('selectedBoardSize');
   const boardSizeLabel = getButtonLabel(button);
-  
-  if (selectedBoardSize) {
-    selectedBoardSize.textContent = boardSizeLabel;
-    selectedBoardSize.style.fontWeight = '700';
-  }
-  
+
+  setSelectedSetting(selectedBoardSize, boardSizeLabel);
   selectionState.boardSize = true;
   updateStartButtonVisibility();
 
@@ -172,6 +160,13 @@ function updateStartButtonVisibility(): void {
  */
 function getButtonLabel(button: HTMLButtonElement): string {
   return button.getAttribute('data-label') || '';
+}
+
+function setSelectedSetting(element: HTMLElement | null, label: string): void {
+  if (element) {
+    element.textContent = label;
+    element.style.fontWeight = '700';
+  }
 }
 
 /**

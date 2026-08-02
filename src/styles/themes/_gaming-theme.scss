@@ -1,3 +1,48 @@
+.has-gaming-font {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.has-gaming-font .exit_button {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.has-gaming-font #winnerFeedback.is-visible {
+  justify-content: center;
+}
+
+.has-gaming-font #winnerFeedback {
+  background-color: #294f60;
+}
+
+.has-gaming-font #backToStart {
+  font-family: 'Orbitron', sans-serif;
+  background-color: transparent;
+  border: 3px solid #ed1b76;
+  border-radius: 12px;
+}
+
+.has-gaming-font #quitGameModal {
+  border-radius: 12px;
+  background-color: #f0f6f9;
+
+  & button {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  & #quitGameModal_backToGame_button {
+    background-color: #ed1b76;
+    border-radius: 12px;
+    color: #f8f8f8;
+  }
+
+  & #quitGameModal_exitGame_button {
+    background-color: #f0e4ef;
+    border: 3px solid #ed1b76;
+    border-radius: 12px;
+    color: #ed1b76;
+  }
+}
+
 .gaming_blue_player {
   &_img {
     width: 29px;

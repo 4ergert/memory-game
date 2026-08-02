@@ -9,7 +9,14 @@ export class Theme {
   cardImageMaxSize?: number;
   cardBorderRadius?: number;
   exitButtonBorderColor?: string;
+  exitButtonHoverScale?: boolean;
+  quitDialogBackButtonLabel?: string;
+  quitDialogExitButtonLabel?: string;
+  winnerDialogBackButtonLabel?: string;
   headerBackgroundColor?: string;
+  winnerImage?: string;
+  showWinnerConfetti?: boolean;
+  fontFamily?: string;
 
 	getPlayerImage(player: PlayerColor): string {
 		return this.playerImages[player];

@@ -6,6 +6,7 @@
     height: 100vh;
     padding: 61px 111px;
     box-sizing: border-box;
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -79,12 +80,16 @@
   box-sizing: border-box;
   border: solid 2px transparent;
   box-shadow: 0 0 0 1px #4dd5bc;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
   &:hover {
     border-color: #4dd5bc;
     box-shadow: none;
   }
+}
+
+.has-exit-button-hover-scale .exit_button:hover {
+  transform: scale(1.05);
 }
 
 .card {

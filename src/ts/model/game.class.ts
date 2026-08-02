@@ -1,8 +1,10 @@
 import type { PlayerColor, Theme } from '../model/theme.class';
 import { Card } from '../model/card.class';
+import { ScoreBoard } from '../components/score-board';
 
 class Game {
   private readonly cards = new WeakMap<HTMLButtonElement, Card>();
+  private readonly scoreBoard = new ScoreBoard();
   private selectedCards: Card[] = [];
   private isComparing = false;
   private blueScore = 0;
@@ -86,14 +88,14 @@ class Game {
   private resetScores(): void {
     this.blueScore = 0;
     this.orangeScore = 0;
-    this.updateScores();
+    this.scoreBoard.reset();
   }
 
   private updateScores(): void {
-    setScore('.blue_player_score', this.blueScore);
-    setScore('.orange_player_score', this.orangeScore);
-    localStorage.setItem('blueScore', String(this.blueScore));
-    localStorage.setItem('orangeScore', String(this.orangeScore));
+    this.scoreBoard.update({
+      blueScore: this.blueScore,
+      orangeScore: this.orangeScore,
+    });
   }
 
   private updateCurrentPlayer(): void {
@@ -107,13 +109,8 @@ class Game {
 }
 
 function getStartingPlayer(): PlayerColor {
-  const selectedPlayer = localStorage.getItem('selectedPlayer') ?? '1 player';
-  return selectedPlayer.startsWith('2') ? 'orange' : 'blue';
-}
-
-function setScore(selector: string, score: number): void {
-  const element = document.querySelector<HTMLElement>(selector);
-  if (element) element.textContent = String(score);
+  const selectedPlayer = localStorage.getItem('selectedPlayer') ?? 'Blue player';
+  return selectedPlayer.startsWith('Orange') ? 'orange' : 'blue';
 }
 
 export function startGame(theme: Theme): void {

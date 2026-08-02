@@ -47,11 +47,11 @@ export function getChoosePlayerSectionTemplate(): string {
         <h3>Choose player</h3>
       </header>
 
-      <button class="choose_player_button" id="playerBlue" data-label="1">
+      <button class="choose_player_button" id="playerBlue" data-label="blue">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Blue
       </button>
-      <button class="choose_player_button" id="playerOrange" data-label="2">
+      <button class="choose_player_button" id="playerOrange" data-label="orange">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         Orange
       </button>
@@ -72,7 +72,7 @@ export function getBoardSizeSectionTemplate(): string {
         <h3>Board size</h3>
       </header>
 
-      <button class="board_size_button" id="board_4x4" data-label="4x4">
+      <button class="board_size_button" id="board_4x4" data-label="2x1">
         <img src="../assets/icons/off.svg" alt="Off Icon">
         16 cards
       </button>

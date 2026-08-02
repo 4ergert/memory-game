@@ -7,6 +7,11 @@ export function applyTheme(theme: Theme): void {
   setScoreBoardBackground(theme.scoreBoardBackgroundColor);
   setHeaderStyle(theme.headerBackgroundColor);
   setExitButtonStyle(theme.exitButtonBorderColor);
+  setText('quitGameModal_backToGame_button', theme.quitDialogBackButtonLabel ?? 'Back to game');
+  setText('quitGameModal_exitGame_button', theme.quitDialogExitButtonLabel ?? 'Exit game');
+  setText('backToStart', theme.winnerDialogBackButtonLabel ?? 'Back to Start');
+  document.body.classList.toggle('has-exit-button-hover-scale', theme.exitButtonHoverScale === true);
+  document.body.classList.toggle('has-gaming-font', theme.fontFamily === 'Orbitron');
 }
 
 function setPlayerLabels(theme: Theme): void {

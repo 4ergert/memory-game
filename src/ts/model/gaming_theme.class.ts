@@ -14,7 +14,14 @@ export class GamingTheme extends Theme {
 		this.cardImageMaxSize = 70;
     this.cardBorderRadius = 12;
 		this.exitButtonBorderColor = '#e71c4f';
+		this.exitButtonHoverScale = true;
+		this.quitDialogBackButtonLabel = 'No, back to Game';
+		this.quitDialogExitButtonLabel = 'Yes, quit game';
+		this.winnerDialogBackButtonLabel = 'Home';
 		this.headerBackgroundColor = '#535d75';
+		this.winnerImage = '../assets/img/pockal-gaming-theme.svg';
+		this.showWinnerConfetti = false;
+		this.fontFamily = 'Orbitron';
 	}
 }
 

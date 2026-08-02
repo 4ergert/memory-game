@@ -1,3 +1,5 @@
+export { initWinnerFeedback } from './winner-feedback';
+
 /**
  * Öffnet das bestehende Quit-Game-Dialogelement, falls es noch nicht geöffnet ist.
  *
