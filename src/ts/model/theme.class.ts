@@ -7,6 +7,7 @@ export class Theme {
   playerImages!: Record<PlayerColor, string>;
   scoreBoardBackgroundColor!: string;
   cardImageMaxSize?: number;
+  cardBorderRadius?: number;
   exitButtonBorderColor?: string;
   headerBackgroundColor?: string;
 

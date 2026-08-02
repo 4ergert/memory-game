@@ -1,8 +1,9 @@
 import './styles/main.scss';
 import { renderCustomUnderline, initSettingsButtons, initSettingsSection, } from './ts/settings/settings';
-import { applyTheme, getSelectedTheme } from './ts/theme/theme';
+import { getSelectedTheme } from './ts/theme/selected-theme';
+import { applyTheme } from './ts/theme/theme-renderer';
 import { renderGamingHeader, renderGameBoard, renderQuitGameModal, renderGameSection } from './ts/game/game';
-import { startGame } from './ts/game/game.class';
+import { startGame } from './ts/model/game.class';
 import { initQuitGameModal } from './ts/components/modal';
 
 

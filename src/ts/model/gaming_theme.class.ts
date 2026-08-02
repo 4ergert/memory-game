@@ -12,6 +12,7 @@ export class GamingTheme extends Theme {
 		};
 		this.scoreBoardBackgroundColor = 'transparent';
 		this.cardImageMaxSize = 70;
+    this.cardBorderRadius = 12;
 		this.exitButtonBorderColor = '#e71c4f';
 		this.headerBackgroundColor = '#535d75';
 	}

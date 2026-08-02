@@ -1,5 +1,5 @@
 import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate, getGameSectionTemplate } from '../game/game-template';
-import { getSelectedTheme } from '../theme/theme';
+import { getSelectedTheme } from '../theme/selected-theme';
 
 /**
  * Mischt ein Array von Kartenbildern zufällig durch.
@@ -78,7 +78,14 @@ export function renderGameBoard(): void {
 
   refField.style.gridTemplateColumns = `repeat(${columns}, 120px)`;
   refField.innerHTML = Array.from({ length: cardCount }, getCardTemplate).join('');
+  applyCardBorderRadius(getSelectedTheme().cardBorderRadius);
   renderBackFaceImages(cardCount);
+}
+
+function applyCardBorderRadius(radius?: number): void {
+  if (!radius) return;
+
+  document.querySelectorAll<HTMLElement>('.card__face').forEach((face) => face.style.borderRadius = `${radius}px`);
 }
 
 /**

@@ -1,20 +1,6 @@
-import { Theme, type PlayerColor } from '../model/theme.class';
-import { CodingTheme } from '../model/coding_theme.class';
-import { GamingTheme } from '../model/gaming_theme.class';
+import type { Theme } from '../model/theme.class';
 
-export type { PlayerColor } from '../model/theme.class';
-export type GameTheme = Theme;
-
-const themes: Record<string, GameTheme> = {
-  'Code vibes theme': new CodingTheme(),
-  'Gaming theme': new GamingTheme(),
-};
-
-export function getSelectedTheme(): GameTheme {
-  return themes[localStorage.getItem('selectedTheme') ?? ''] ?? themes['Code vibes theme'];
-}
-
-export function applyTheme(theme: GameTheme): void {
+export function applyTheme(theme: Theme): void {
   document.body.style.backgroundColor = theme.backgroundColor;
   setPlayerLabels(theme);
   setCardFaces(theme.cardFaceImage);
@@ -23,7 +9,7 @@ export function applyTheme(theme: GameTheme): void {
   setExitButtonStyle(theme.exitButtonBorderColor);
 }
 
-function setPlayerLabels(theme: GameTheme): void {
+function setPlayerLabels(theme: Theme): void {
   setImageSource('bluePlayerImg', theme.getPlayerImage('blue'));
   setImageSource('orangePlayerImg', theme.getPlayerImage('orange'));
   setText('blueCodingLabel', 'Blue');

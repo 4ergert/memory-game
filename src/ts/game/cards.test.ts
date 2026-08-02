@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { startGame } from './game.class';
+import { startGame } from '../model/game.class';
 import { Theme } from '../model/theme.class';
 
 const theme = new Theme();

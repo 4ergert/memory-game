@@ -1,4 +1,4 @@
-import type { GameTheme, PlayerColor } from '../theme/theme';
+import type { PlayerColor, Theme } from '../model/theme.class';
 import { Card } from '../model/card.class';
 
 class Game {
@@ -11,7 +11,7 @@ class Game {
 
   constructor(
     private readonly field: HTMLElement,
-    private readonly theme: GameTheme,
+    private readonly theme: Theme,
   ) {
     this.currentPlayer = getStartingPlayer();
   }
@@ -116,7 +116,7 @@ function setScore(selector: string, score: number): void {
   if (element) element.textContent = String(score);
 }
 
-export function startGame(theme: GameTheme): void {
+export function startGame(theme: Theme): void {
   const field = document.getElementById('field');
   if (field) new Game(field, theme).start();
 }
