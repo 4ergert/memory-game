@@ -1,8 +1,21 @@
-/checkliste.txt
-/node_modules
-/open-links.ps1
-/gitignore
-/vitest.config.ts
-/tsconfig.json
-/package-lock.json
-/package.json
+node_modules/
+dist/
+coverage/
+
+# Local project files
+checkliste.txt
+open-links.ps1
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
