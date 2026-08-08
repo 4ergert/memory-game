@@ -50,9 +50,68 @@ function renderSection(selector: string, template: () => string): void {
  */
 export function initSettingsButtons(): void {
   initButtonGroup('.theme_button', showThemeFeedback);
+  initThemePreview();
   initButtonGroup('.choose_player_button', showSelectedPlayer);
   initButtonGroup('.board_size_button', showSelectedBoardSize);
+  initHoverUnderline('.choose_player_button');
+  initHoverUnderline('.board_size_button');
   initStartGameButton();
+}
+
+/** Shows the shared underline while an unselected button is hovered or focused. */
+function initHoverUnderline(selector: string): void {
+  document.querySelectorAll<HTMLButtonElement>(selector).forEach((button) => {
+    button.addEventListener('mouseenter', () => showButtonUnderline(button));
+    button.addEventListener('focus', () => showButtonUnderline(button));
+    button.addEventListener('mouseleave', () => removeHoverUnderline(button));
+    button.addEventListener('blur', () => removeHoverUnderline(button));
+  });
+}
+
+/** Removes a preview underline unless the button remains selected. */
+function removeHoverUnderline(button: HTMLButtonElement): void {
+  if (!button.classList.contains('is-selected')) button.querySelector('.underline')?.remove();
+}
+
+/** Previews theme artwork while a theme button is hovered or focused. */
+function initThemePreview(): void {
+  const feedback = document.getElementById('settingsFeedback');
+  const initialContent = feedback?.innerHTML;
+
+  document.querySelectorAll<HTMLButtonElement>('.theme_button').forEach((button) => {
+    button.addEventListener('mouseenter', () => showThemePreview(button));
+    button.addEventListener('focus', () => showThemePreview(button));
+    button.addEventListener('mouseleave', () => hideThemePreview(button, initialContent));
+    button.addEventListener('blur', () => hideThemePreview(button, initialContent));
+  });
+}
+
+/** Shows a theme's artwork and underline while it is previewed. */
+function showThemePreview(button: HTMLButtonElement): void {
+  renderThemePreview(button);
+  showButtonUnderline(button);
+}
+
+/** Restores the theme preview and removes a non-selected button's underline. */
+function hideThemePreview(button: HTMLButtonElement, initialContent: string | undefined): void {
+  if (!button.classList.contains('is-selected')) button.querySelector('.underline')?.remove();
+  restoreThemePreview(initialContent);
+}
+
+/** Renders a theme's artwork in the settings feedback area. */
+function renderThemePreview(button: HTMLButtonElement): void {
+  const feedback = document.getElementById('settingsFeedback');
+  const icon = THEME_ICONS[button.id];
+  if (feedback && icon) feedback.innerHTML = `<img src="${icon}" alt="${getButtonLabel(button)}">`;
+}
+
+/** Restores the selected theme artwork or the initial settings prompt. */
+function restoreThemePreview(initialContent: string | undefined): void {
+  const selectedTheme = document.querySelector<HTMLButtonElement>('.theme_button.is-selected');
+  if (selectedTheme) return renderThemePreview(selectedTheme);
+
+  const feedback = document.getElementById('settingsFeedback');
+  if (feedback && initialContent) feedback.innerHTML = initialContent;
 }
 
 /**
@@ -206,9 +265,7 @@ function handleButtonClick(selected: HTMLButtonElement, buttons: NodeListOf<HTML
   buttons.forEach((button) => {
     const isSelected = button === selected;
     const icon = button.querySelector('img');
-    if (icon) {
-      icon.src = isSelected ? '../assets/icons/on.svg' : '../assets/icons/off.svg';
-    }
+    if (icon) icon.src = isSelected ? '../assets/icons/on.svg' : '../assets/icons/off.svg';
 
     button.classList.toggle('is-selected', isSelected);
     if (isSelected) {
