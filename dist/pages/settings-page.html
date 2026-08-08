@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game - Settings</title>
+  <script type="module" crossorigin src="../assets/settings-BC8ECsYd.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/main-CK07hiUq.js">
+  <link rel="stylesheet" crossorigin href="../assets/main-CI88L4nW.css">
+</head>
+
+<body class="settings">
+
+  <main class="settings_content">
+
+    <header class="settings_header">
+      <h2>Settings</h2>
+      <template custom-underline></template>
+    </header>
+
+    <section class="settings_box">
+      <section class="settings_section">
+        <template theme-section></template>
+        <template choose-player-section></template>
+        <template board-size-section></template>
+      </section>
+
+      <aside class="settings_aside">
+        <section class="settings_feedback" id="settingsFeedback">
+          <h3>
+            Please <br>
+            choose a theme,<br>
+            player, and board size <br>
+            to start the game.
+          </h3>
+        </section>
+  
+        <section class="start_game">
+          <div class="start_game_feedback">
+            <div id="selectedGameTheme">Game theme</div>
+            <div class="start_game_slash" id="themePlayerDivider"></div>
+          </div>
+          <div class="start_game_feedback">
+            <div id="selectedPlayer">Player</div>
+            <div class="start_game_slash" id="playerBoardDivider"></div>
+          </div>
+          <div class="start_game_feedback">
+            <div id="selectedBoardSize">Board size</div>
+            <img id="startDefaultIcon" src="../assets/icons/start_default.svg" alt="Start Default Img">
+            <button id="startGameButton" class="startGameButton" hidden><img src="../assets/icons/play-button.svg" alt="Start Game Img">Start</button>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+  </main>
+
+</body>
+
+</html>

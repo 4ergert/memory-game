@@ -162,6 +162,7 @@ function getButtonLabel(button: HTMLButtonElement): string {
   return button.getAttribute('data-label') || '';
 }
 
+/** Updates one selected-setting label and emphasizes it visually. */
 function setSelectedSetting(element: HTMLElement | null, label: string): void {
   if (element) {
     element.textContent = label;

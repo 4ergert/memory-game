@@ -1,9 +1,9 @@
 export { initWinnerFeedback } from './winner-feedback';
 
 /**
- * Öffnet das bestehende Quit-Game-Dialogelement, falls es noch nicht geöffnet ist.
+ * Opens the existing quit-game dialog if it is not already open.
  *
- * @param dialog - Das `HTMLDialogElement`, das geöffnet werden soll.
+ * @param dialog - The `HTMLDialogElement` to open.
  */
 function openQuitGameModal(dialog: HTMLDialogElement): void {
   if (!dialog.open) {
@@ -12,9 +12,9 @@ function openQuitGameModal(dialog: HTMLDialogElement): void {
 }
 
 /**
- * Schließt das bestehende Quit-Game-Dialogelement, falls es geöffnet ist.
+ * Closes the existing quit-game dialog if it is open.
  *
- * @param dialog - Das `HTMLDialogElement`, das geschlossen werden soll.
+ * @param dialog - The `HTMLDialogElement` to close.
  */
 function closeQuitGameModal(dialog: HTMLDialogElement): void {
   if (dialog.open) {
@@ -23,11 +23,10 @@ function closeQuitGameModal(dialog: HTMLDialogElement): void {
 }
 
 /**
- * Initialisiert die Quit-Game-Modal-Logik.
+ * Initializes the quit-game dialog behavior.
  *
- * Diese Funktion findet den Exit-Button, den Quit-Dialog und die beiden
- * Modal-Aktionsbuttons. Sie bindet die Klick-Events, um den Dialog zu öffnen,
- * ihn wieder zu schließen und auf Exit zu navigieren.
+ * Finds the exit button, dialog, and both dialog action buttons. It registers
+ * click handlers to open and close the dialog and navigate after confirmation.
  */
 export function initQuitGameModal(): void {
   const triggerButton = document.querySelector<HTMLButtonElement>('.exit_button');
@@ -47,6 +46,7 @@ export function initQuitGameModal(): void {
   backdropCloseDialog(dialog);
 }
 
+/** Closes the dialog when its backdrop, rather than its content, is clicked. */
 function backdropCloseDialog(dialog: HTMLDialogElement): void {
     dialog.addEventListener('click', (event) => {
     if (event.target === dialog) {

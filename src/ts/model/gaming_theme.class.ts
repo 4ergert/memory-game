@@ -1,5 +1,6 @@
 import { Theme } from './theme.class';
 
+/** Provides assets and presentation settings for the gaming theme. */
 export class GamingTheme extends Theme {
 	constructor() {
 		super();
@@ -20,6 +21,7 @@ export class GamingTheme extends Theme {
 	}
 }
 
+/** Creates the ordered list of gaming-theme card image paths. */
 function getCardImages(): string[] {
 	return Array.from({ length: 18 }, (_, index) => {
 		const number = String(index + 1).padStart(2, '0');

@@ -1,3 +1,4 @@
+/** Returns the shared underline markup used for selected controls. */
 export function getCustomUnderlineTemplate(): string {
   return `
       <div class="underline">

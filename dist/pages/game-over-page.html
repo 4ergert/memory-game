@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Over</title>
+  <script type="module" crossorigin src="../assets/gameOver-BC8ECsYd.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/main-CK07hiUq.js">
+  <link rel="stylesheet" crossorigin href="../assets/main-CI88L4nW.css">
+</head>
+
+<body class="game-over-page">
+
+  <section class="game-over">
+    <h1>Game Over</h1>
+    <div>
+      <p>Final score</p>
+      <section class="score_board">
+        <div class="blue_player">
+          <img id="bluePlayerImg" src="" alt="">
+          <span id="blueCodingLabel"></span>
+          <span class="blue_player_score">0</span>
+        </div>
+
+        <div class="orange_player">
+          <img id="orangePlayerImg" src="" alt="orange player label">
+          <span id="orangeCodingLabel"></span>
+          <span class="orange_player_score">0</span>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <dialog id="winnerFeedback">
+    <img id="confetti" src="../assets/img/confetti.svg" alt="confetti">
+    <section class="winner_feedback">
+      <div>
+        <p id="winnerFeedbackTitle">The winner is</p>
+        <span id="winnerName"></span>
+      </div>
+      <img id="winnerImg" src="" alt="winner image">
+      <button id="backToStart">Back to Start</button>
+    </section>
+  </dialog>
+
+</body>
+
+</html>

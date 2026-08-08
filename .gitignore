@@ -1,4 +1,8 @@
 /checkliste.txt
-/dist
 /node_modules
 /open-links.ps1
+/gitignore
+/vitest.config.ts
+/tsconfig.json
+/package-lock.json
+/package.json

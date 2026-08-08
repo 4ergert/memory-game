@@ -2,11 +2,13 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { startGame } from '../model/game.class';
 import { Theme } from '../model/theme.class';
 
+/** Provides the minimum theme configuration needed by the game-rule tests. */
 const theme = new Theme();
 theme.cardFaceImage = '';
 theme.cardImages = [];
 theme.playerImages = { blue: 'blue.svg', orange: 'orange.svg' };
 
+/** Renders a test board and returns its card elements. */
 function renderGame(images: string[]): HTMLButtonElement[] {
   document.body.innerHTML = `
     <span class="blue_player_score">0</span>
@@ -21,6 +23,7 @@ function renderGame(images: string[]): HTMLButtonElement[] {
   return Array.from(document.querySelectorAll<HTMLButtonElement>('.card'));
 }
 
+/** Dispatches a bubbling click event for one test card. */
 function click(card: HTMLButtonElement): void {
   card.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 }

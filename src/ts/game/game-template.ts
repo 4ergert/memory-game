@@ -1,3 +1,4 @@
+/** Returns the header markup for the memory game page. */
 export function getGamingHeaderTemplate(): string {
   return `
   <header class="memory_game_header">
@@ -27,6 +28,7 @@ export function getGamingHeaderTemplate(): string {
   `;
 }
 
+/** Returns the markup for one face-down memory card. */
 export function getCardTemplate(): string {
   return `
       <button class="card" type="button">
@@ -38,6 +40,7 @@ export function getCardTemplate(): string {
     `;
 }
 
+/** Returns the container markup for the rendered game board. */
 export function getGameSectionTemplate(): string {
   return `
       <section class="memory_game_board">
@@ -48,6 +51,7 @@ export function getGameSectionTemplate(): string {
   `;
 }
 
+/** Returns the confirmation dialog shown before leaving a game. */
 export function getQuitGameModalTemplate(): string {
   return `
     <dialog id="quitGameModal">

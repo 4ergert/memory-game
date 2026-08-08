@@ -2,10 +2,10 @@ import { getGamingHeaderTemplate, getCardTemplate, getQuitGameModalTemplate, get
 import { getSelectedTheme } from '../theme/selected-theme';
 
 /**
- * Mischt ein Array von Kartenbildern zufällig durch.
+ * Randomly shuffles an array of card image paths.
  *
- * @param cards - Die Liste der Kartenbilder, die gemischt werden soll.
- * @returns Ein neu gemischtes Array mit denselben Einträgen.
+ * @param cards - The card image paths to shuffle.
+ * @returns A new array containing the same entries in random order.
  */
 function shuffleCards(cards: string[]): string[] {
   const shuffledCards = [...cards];
@@ -19,9 +19,9 @@ function shuffleCards(cards: string[]): string[] {
 }
 
 /**
- * Rendert die Rückseiten der Karten mit zufällig ausgewählten Bildpaaren.
+ * Renders randomly ordered image pairs on the card back faces.
  *
- * @param cardCount - Die Anzahl der Karten auf dem aktuellen Spielfeld.
+ * @param cardCount - The number of cards on the current board.
  */
 function renderBackFaceImages(cardCount: number): void {
   const backFaces = Array.from(document.querySelectorAll<HTMLElement>('.card__face--back'));
@@ -41,6 +41,7 @@ function renderBackFaceImages(cardCount: number): void {
   });
 }
 
+/** Adds an optional card image while respecting the theme's size limit. */
 function renderCardImage(face: HTMLElement, source: string | undefined, maxSize?: number): void {
   face.querySelector('.card__image')?.remove();
   if (!source || !maxSize) return;
@@ -55,7 +56,7 @@ function renderCardImage(face: HTMLElement, source: string | undefined, maxSize?
 }
 
 /**
- * Rendert den Header der Memory-Game-Seite.
+ * Renders the header for the memory game page.
  */
 export function renderGamingHeader(): void {
   const refHeaderSection = document.querySelector<HTMLElement>('[header-section]');
@@ -64,7 +65,7 @@ export function renderGamingHeader(): void {
 }
 
 /**
- * Rendert das Spielfeld mit der passenden Kartenanzahl und den zugewiesenen Rückseitenbildern.
+ * Renders the board with the selected number of cards and assigned back-face images.
  */
 export function renderGameBoard(): void {
   const refField = document.getElementById('field');
@@ -83,6 +84,7 @@ export function renderGameBoard(): void {
   renderBackFaceImages(cardCount);
 }
 
+/** Applies the selected theme's optional radius to every card face. */
 function applyCardBorderRadius(radius?: number): void {
   if (!radius) return;
 
@@ -90,10 +92,10 @@ function applyCardBorderRadius(radius?: number): void {
 }
 
 /**
- * Rendert den Spielbereich in die Seite.
+ * Renders the game section into the page.
  *
- * Der vorhandene Platzhalter mit dem Attribut `[game-section]` wird durch
- * das Spielabschnitts-Template ersetzt.
+ * Replaces the placeholder with the `[game-section]` attribute using the game
+ * section template.
  */
 export function renderGameSection(): void {
   const refGameSection = document.querySelector<HTMLElement>('[game-section]');
@@ -101,10 +103,10 @@ export function renderGameSection(): void {
 }
 
 /**
- * Rendert das Quit-Game-Modal in die Seite.
+ * Renders the quit-game dialog into the page.
  *
- * Der Platzhalter mit dem Attribut `[quitGameModal-section]` wird durch das
- * Quit-Dialog-Template ersetzt.
+ * Replaces the placeholder with the `[quitGameModal-section]` attribute using
+ * the quit-game dialog template.
  */
 export function renderQuitGameModal(): void {
   const refQuitGameModalSection = document.querySelector<HTMLElement>('[quitGameModal-section]');

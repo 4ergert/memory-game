@@ -7,6 +7,7 @@ const themes: Record<string, Theme> = {
   'Gaming theme': new GamingTheme(),
 };
 
+/** Returns the persisted theme, falling back to the coding theme. */
 export function getSelectedTheme(): Theme {
   return themes[localStorage.getItem('selectedTheme') ?? ''] ?? themes['Code vibes theme'];
 }

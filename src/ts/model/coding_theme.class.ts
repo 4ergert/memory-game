@@ -1,5 +1,6 @@
 import { Theme } from './theme.class';
 
+/** Provides card and player assets for the coding theme. */
 export class CodingTheme extends Theme {
   constructor() {
     super();
@@ -12,6 +13,7 @@ export class CodingTheme extends Theme {
   }
 }
 
+/** Creates the ordered list of coding-theme card image paths. */
 function getCardImages(): string[] {
 	return Array.from({ length: 18 }, (_, index) => {
 		const number = String(index + 1).padStart(2, '0');
