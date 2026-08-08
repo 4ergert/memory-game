@@ -3,11 +3,9 @@ import { startGame } from '../model/game.class';
 import { Theme } from '../model/theme.class';
 
 const theme = new Theme();
-theme.backgroundColor = '#000000';
 theme.cardFaceImage = '';
 theme.cardImages = [];
 theme.playerImages = { blue: 'blue.svg', orange: 'orange.svg' };
-theme.scoreBoardBackgroundColor = 'transparent';
 
 function renderGame(images: string[]): HTMLButtonElement[] {
   document.body.innerHTML = `

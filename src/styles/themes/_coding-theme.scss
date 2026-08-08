@@ -1,0 +1,14 @@
+.has-coding-theme {
+	background-color: #303131;
+
+	.score_board {
+		background-color: #415652;
+	}
+}
+
+.has-coding-theme .card.is-matched .card__face--back {
+	--matched-border-color: #4dd5bc;
+	--matched-box-shadow: 6px 6px 8px 0px #4dd5bc4d;
+  border: 5px solid var(--matched-border-color);
+  box-shadow: var(--matched-box-shadow);
+}

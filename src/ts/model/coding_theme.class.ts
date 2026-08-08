@@ -3,14 +3,12 @@ import { Theme } from './theme.class';
 export class CodingTheme extends Theme {
   constructor() {
     super();
-    this.backgroundColor = '#303131';
     this.cardFaceImage = '../assets/img/coding-card-face.svg';
     this.cardImages = getCardImages();
     this.playerImages = {
       blue: '../assets/icons/blue-code-label.svg',
       orange: '../assets/icons/orange-code-label.svg',
     };
-    this.scoreBoardBackgroundColor = '#415652';
   }
 }
 

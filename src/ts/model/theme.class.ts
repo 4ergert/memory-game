@@ -1,19 +1,14 @@
 export type PlayerColor = 'blue' | 'orange';
 
 export class Theme {
-  backgroundColor!: string;
   cardFaceImage!: string;
   cardImages!: string[];
   playerImages!: Record<PlayerColor, string>;
-  scoreBoardBackgroundColor!: string;
   cardImageMaxSize?: number;
   cardBorderRadius?: number;
-  exitButtonBorderColor?: string;
-  exitButtonHoverScale?: boolean;
   quitDialogBackButtonLabel?: string;
   quitDialogExitButtonLabel?: string;
   winnerDialogBackButtonLabel?: string;
-  headerBackgroundColor?: string;
   winnerImage?: string;
   showWinnerConfetti?: boolean;
   fontFamily?: string;

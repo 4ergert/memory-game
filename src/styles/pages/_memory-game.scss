@@ -95,6 +95,7 @@
 .card {
   width: 120px;
   height: 120px;
+  padding: 0;
   background-color: transparent;
   border: none;
 
@@ -132,6 +133,35 @@
 
   &.is-flipped .card__inner {
     transform: rotateY(180deg);
+  }
+
+  &.is-matched .card__face--back {
+    animation: matched-border-blink 1500ms steps(1, end);
+  }
+}
+
+@keyframes matched-border-blink {
+  0%,
+  24%,
+  50%,
+  74%,
+  100% {
+    border-color: var(--matched-border-color);
+    box-shadow: var(--matched-box-shadow);
+  }
+
+  25%,
+  49%,
+  75%,
+  99% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card.is-matched .card__face--back {
+    animation: none;
   }
 }
 

@@ -77,6 +77,7 @@ export function renderGameBoard(): void {
   const columns = validSize ? cols : 4;
 
   refField.style.gridTemplateColumns = `repeat(${columns}, 120px)`;
+  refField.style.gap = cardCount === 36 ? '6px' : '';
   refField.innerHTML = Array.from({ length: cardCount }, getCardTemplate).join('');
   applyCardBorderRadius(getSelectedTheme().cardBorderRadius);
   renderBackFaceImages(cardCount);

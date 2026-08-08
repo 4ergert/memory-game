@@ -1,9 +1,27 @@
 .has-gaming-font {
   font-family: 'Orbitron', sans-serif;
+  background-color: #294f60;
 }
 
 .has-gaming-font .exit_button {
   font-family: 'Orbitron', sans-serif;
+  background-color: transparent;
+  border: 2px solid #e71c4f;
+  border-radius: 8px;
+  box-shadow: none;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.has-gaming-font .memory_game_header {
+  background-color: #535d75;
+  border-radius: 8px;
+}
+
+.has-gaming-font .score_board {
+  background-color: transparent;
 }
 
 .has-gaming-font #winnerFeedback.is-visible {
@@ -50,4 +68,11 @@
     background-image: url('../assets/icons/blue-gaming-label.svg');
     background-size: cover;
   }
+}
+
+.has-gaming-font .card.is-matched .card__face--back {
+	--matched-border-color: #ed1b76;
+	--matched-box-shadow: 5px 5px 8px 0px #ed1b764d;
+  border: 3px solid var(--matched-border-color);
+  box-shadow: var(--matched-box-shadow);
 }
