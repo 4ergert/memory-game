@@ -1,27 +1,27 @@
 # Memory Game
 
-Ein browserbasiertes Memory-Spiel fuer zwei Personen. Vor dem Start werden Theme, Startspieler und Spielfeldgroesse ausgewaehlt. Die Spielkonfiguration wird im Browser gespeichert.
+A browser-based memory game for two players. Before starting a game, choose a theme, the starting player, and a board size. The selected configuration is stored in the browser.
 
-## Funktionen
+## Features
 
-- Coding- und Gaming-Theme
-- Auswahl des Startspielers
-- Mehrere Spielfeldgroessen
-- Abwechselnde Spielzuege bei falschen Paaren
-- Punktezaehlung fuer gefundene Paare
-- Visuelles Feedback fuer passende Karten
-- Quit-Dialog und Gewinneranzeige
+- Coding and gaming themes
+- Starting-player selection
+- Multiple board sizes
+- Alternating turns after a missed pair
+- Score tracking for matched pairs
+- Visual feedback for matched cards
+- Quit confirmation dialog and winner feedback
 
-## Technologien
+## Tech Stack
 
 - TypeScript
 - SCSS
 - Vite
-- Vitest und JSDOM
+- Vitest and JSDOM
 
-## Voraussetzungen
+## Requirements
 
-- Node.js 20 oder neuer
+- Node.js 20 or later
 - npm
 
 ## Installation
@@ -30,49 +30,49 @@ Ein browserbasiertes Memory-Spiel fuer zwei Personen. Vor dem Start werden Theme
 npm install
 ```
 
-## Entwicklung starten
+## Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Vite zeigt danach die lokale Adresse an, normalerweise `http://localhost:5173`.
+Vite prints the local URL after starting, usually `http://localhost:5173`.
 
-## Verfuegbare Befehle
+## Available Commands
 
-| Befehl | Beschreibung |
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Startet den lokalen Entwicklungsserver. |
-| `npm run build` | Prueft TypeScript und erstellt den Produktions-Build in `dist/`. |
-| `npm run preview` | Stellt den Produktions-Build lokal bereit. |
-| `npm test` | Fuehrt die Spielregel-Tests aus. |
-| `npm run open` | Oeffnet die verlinkten Projektressourcen. |
+| `npm run dev` | Starts the local development server. |
+| `npm run build` | Type-checks the project and creates a production build in `dist/`. |
+| `npm run preview` | Serves the production build locally. |
+| `npm test` | Runs the game rule tests. |
+| `npm run open` | Opens linked project resources. |
 
-## Spielregeln
+## Game Rules
 
-1. Waehle auf der Einstellungsseite ein Theme, den Startspieler und eine Spielfeldgroesse.
-2. Drehe zwei Karten auf.
-3. Bei einem passenden Paar erhaelt der aktive Spieler einen Punkt und spielt weiter.
-4. Bei einem falschen Paar werden die Karten wieder verdeckt und der Zug wechselt.
-5. Sobald alle Paare gefunden sind, wird die Gewinnerseite angezeigt.
+1. On the settings page, choose a theme, starting player, and board size.
+2. Reveal two cards.
+3. When the cards match, the active player earns a point and takes another turn.
+4. When the cards do not match, they are turned face down and the turn changes.
+5. After all pairs are found, the winner feedback page is shown.
 
-## Projektstruktur
+## Project Structure
 
 ```text
 src/
-  styles/       SCSS fuer Basis-, Seiten- und Theme-Stile
+  styles/       Base, page, and theme SCSS styles
   ts/
-    game/       Spielfeld und Spielregeln
-    model/      Karten-, Theme- und Spielmodelle
-    settings/   Einstellungsseite
-    theme/      Theme-Auswahl und -Anwendung
-pages/          HTML-Seiten fuer Einstellungen, Spiel und Spielende
-public/assets/  Bilder, Icons und Schriftarten
+    game/       Board rendering and game rules
+    model/      Card, theme, and game models
+    settings/   Settings-page behavior
+    theme/      Theme selection and application
+pages/          HTML pages for settings, gameplay, and game over
+public/assets/  Images, icons, and fonts
 ```
 
-## Build und Tests
+## Build and Test
 
-Vor einem Release empfiehlt sich:
+Before releasing, run:
 
 ```bash
 npm test
