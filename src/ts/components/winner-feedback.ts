@@ -6,7 +6,7 @@ type WinnerFeedbackElements = {
   winnerName: HTMLElement;
   title: HTMLElement;
   image: HTMLImageElement;
-  confetti: HTMLElement;
+  confetti: HTMLImageElement;
   dialog: HTMLDialogElement;
 };
 
@@ -25,7 +25,7 @@ function getWinnerFeedbackElements(): WinnerFeedbackElements | null {
   const winnerName = document.getElementById('winnerName');
   const title = document.getElementById('winnerFeedbackTitle');
   const image = document.getElementById('winnerImg') as HTMLImageElement | null;
-  const confetti = document.getElementById('confetti');
+  const confetti = document.getElementById('confetti') as HTMLImageElement | null;
   const dialog = document.getElementById('winnerFeedback') as HTMLDialogElement | null;
 
   if (!winnerName || !title || !image || !confetti || !dialog) return null;
@@ -46,6 +46,7 @@ function renderWinnerFeedback(isBlueWinner: boolean, elements: WinnerFeedbackEle
   elements.winnerName.style.color = winner.color;
   elements.image.src = getSelectedTheme().winnerImage ?? winner.image;
   elements.confetti.hidden = getSelectedTheme().showWinnerConfetti === false;
+  if (!elements.confetti.hidden) elements.confetti.src = elements.confetti.dataset.src ?? '';
   elements.dialog.classList.remove('is-draw');
 }
 

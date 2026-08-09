@@ -1,35 +1,50 @@
 import './styles/main.scss';
-import { renderCustomUnderline, initSettingsButtons, initSettingsSection, } from './ts/settings/settings';
-import { getSelectedTheme } from './ts/theme/selected-theme';
-import { applyTheme } from './ts/theme/theme-renderer';
-import { ScoreBoard } from './ts/components/score-board';
-import { renderGamingHeader, renderGameBoard, renderQuitGameModal, renderGameSection } from './ts/game/game';
-import { startGame } from './ts/model/game.class';
-import { initQuitGameModal, initWinnerFeedback } from './ts/components/modal';
 
 /** Initializes the page-specific UI and game behavior for the current route. */
-if (document.body.classList.contains('settings')) {
+if (document.body.classList.contains('settings')) void initSettingsPage();
+if (document.body.classList.contains('memory_game_body')) void initMemoryGamePage();
+if (document.body.classList.contains('game-over-page')) void initGameOverPage();
+
+/** Loads and initializes the settings-page modules. */
+async function initSettingsPage(): Promise<void> {
+  const { renderCustomUnderline, initSettingsButtons, initSettingsSection } = await import('./ts/settings/settings');
   renderCustomUnderline();
   initSettingsSection();
   initSettingsButtons();
 }
 
-if (document.body.classList.contains('memory_game_body')) {
-  renderGamingHeader();
-  renderGameSection();
-  renderGameBoard();
-  renderQuitGameModal();
-  initQuitGameModal();
-  const theme = getSelectedTheme();
-  applyTheme(theme);
-  startGame(theme);
+/** Loads and initializes the interactive memory-game modules. */
+async function initMemoryGamePage(): Promise<void> {
+  const [game, themeSelection, themeRenderer, gameModel, dialogs] = await Promise.all([
+    import('./ts/game/game'),
+    import('./ts/theme/selected-theme'),
+    import('./ts/theme/theme-renderer'),
+    import('./ts/model/game.class'),
+    import('./ts/components/dialogs'),
+  ]);
+
+  game.renderGamingHeader();
+  game.renderGameSection();
+  game.renderGameBoard();
+  game.renderQuitGameModal();
+  dialogs.initQuitGameModal();
+  const theme = themeSelection.getSelectedTheme();
+  themeRenderer.applyTheme(theme);
+  gameModel.startGame(theme);
 }
 
-if (document.body.classList.contains('game-over-page')) {
-  const scoreBoard = new ScoreBoard();
-  const { blueScore, orangeScore } = scoreBoard.getScores();
+/** Loads and initializes the game-over modules. */
+async function initGameOverPage(): Promise<void> {
+  const [scoreBoardModule, dialogs, themeSelection, themeRenderer] = await Promise.all([
+    import('./ts/components/score-board'),
+    import('./ts/components/dialogs'),
+    import('./ts/theme/selected-theme'),
+    import('./ts/theme/theme-renderer'),
+  ]);
 
+  const scoreBoard = new scoreBoardModule.ScoreBoard();
+  const { blueScore, orangeScore } = scoreBoard.getScores();
   scoreBoard.render({ blueScore, orangeScore });
-  initWinnerFeedback({ blueScore, orangeScore });
-  applyTheme(getSelectedTheme());
+  dialogs.initWinnerFeedback({ blueScore, orangeScore });
+  themeRenderer.applyTheme(themeSelection.getSelectedTheme());
 }

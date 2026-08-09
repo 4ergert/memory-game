@@ -125,7 +125,7 @@ class Game {
 /** Returns the player stored as the starting player, defaulting to blue. */
 function getStartingPlayer(): PlayerColor {
   const selectedPlayer = localStorage.getItem('selectedPlayer') ?? 'Blue player';
-  return selectedPlayer.startsWith('Orange') ? 'orange' : 'blue';
+  return selectedPlayer.toLowerCase().includes('orange') ? 'orange' : 'blue';
 }
 
 /** Starts a new game on the rendered board with the selected theme. */

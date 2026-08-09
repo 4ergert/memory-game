@@ -9,7 +9,7 @@ theme.cardImages = [];
 theme.playerImages = { blue: 'blue.svg', orange: 'orange.svg' };
 
 /** Renders a test board and returns its card elements. */
-function renderGame(images: string[]): HTMLButtonElement[] {
+function renderGame(images: string[], selectedPlayer?: string): HTMLButtonElement[] {
   document.body.innerHTML = `
     <span class="blue_player_score">0</span>
     <span class="orange_player_score">0</span>
@@ -19,6 +19,7 @@ function renderGame(images: string[]): HTMLButtonElement[] {
     </section>
   `;
   localStorage.clear();
+  if (selectedPlayer) localStorage.setItem('selectedPlayer', selectedPlayer);
   startGame(theme);
   return Array.from(document.querySelectorAll<HTMLButtonElement>('.card'));
 }
@@ -31,6 +32,12 @@ function click(card: HTMLButtonElement): void {
 afterEach(() => vi.useRealTimers());
 
 describe('memory game rules', () => {
+  it('starts with orange when orange is selected in settings', () => {
+    renderGame(['a', 'b'], 'Player orange');
+
+    expect(document.getElementById('currentPlayer')?.getAttribute('src')).toBe('orange.svg');
+  });
+
   it('awards a point to the active player for a matched pair', () => {
     vi.useFakeTimers();
     const [firstCard, secondCard] = renderGame(['a', 'a', 'b', 'b']);

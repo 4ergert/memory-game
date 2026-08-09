@@ -88,6 +88,15 @@
 
 #confetti {
   margin-top: -20px;
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  #confetti {
+    width: 700px;
+  }
 }
 
 #winnerName {
@@ -98,6 +107,7 @@
 }
 
 .winner_feedback {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
