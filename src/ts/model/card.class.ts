@@ -15,8 +15,8 @@ export class Card {
    * @param image - The image identifier used to compare this card with another.
    */
   constructor(
-    private readonly element: HTMLButtonElement,
-    readonly image: string | null,
+    private readonly element: HTMLButtonElement /** Button element rendered for this card. */,
+    readonly image: string | null /** Image identifier used when comparing a pair. */,
   ) {}
 
   /**

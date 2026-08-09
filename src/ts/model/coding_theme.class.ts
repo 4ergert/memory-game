@@ -12,12 +12,12 @@ export class CodingTheme extends Theme {
    */
   constructor() {
     super();
-    this.cardFaceImage = '../assets/img/coding-card-face.svg';
-    this.cardImages = getCardImages();
+    this.cardFaceImage = '../assets/img/coding-card-face.svg'; /** Face-down card image path. */
+    this.cardImages = getCardImages(); /** Available face-up card image paths. */
     this.playerImages = {
       blue: '../assets/icons/blue-code-label.svg',
       orange: '../assets/icons/orange-code-label.svg',
-    };
+    }; /** Player-label image paths keyed by color. */
   }
 }
 

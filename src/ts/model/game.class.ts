@@ -25,10 +25,10 @@ class Game {
    * @param theme - The selected theme that supplies display assets.
    */
   constructor(
-    private readonly field: HTMLElement,
-    private readonly theme: Theme,
+    private readonly field: HTMLElement /** Board element containing the card buttons. */,
+    private readonly theme: Theme /** Theme that provides the display assets. */,
   ) {
-    this.currentPlayer = getStartingPlayer();
+    this.currentPlayer = getStartingPlayer(); /** Player selected to take the first turn. */
   }
 
   /**
