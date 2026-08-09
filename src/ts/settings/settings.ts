@@ -26,9 +26,9 @@ export function renderCustomUnderline(): void {
  * Renders the settings sections if their placeholders exist on the page.
  */
 export function initSettingsSection(): void {
-  renderSection('[theme-section]', getThemeSectionTemplate);
+  renderSection('[choose-theme-section]', getThemeSectionTemplate);
   renderSection('[choose-player-section]', getChoosePlayerSectionTemplate);
-  renderSection('[board-size-section]', getBoardSizeSectionTemplate);
+  renderSection('[choose-board-size-section]', getBoardSizeSectionTemplate);
   renderSection('[selected-theme-section]', getSelectedThemeSectionTemplate);
   renderSection('[start-game-section]', getStartGameSectionTemplate);
 }
