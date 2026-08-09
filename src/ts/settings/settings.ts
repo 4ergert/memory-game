@@ -1,4 +1,4 @@
-import { getCustomUnderlineTemplate, getBoardSizeSectionTemplate, getChoosePlayerSectionTemplate, getThemeSectionTemplate } from './settings-templates';
+import { getSelectedThemeSectionTemplate, getCustomUnderlineTemplate, getBoardSizeSectionTemplate, getChoosePlayerSectionTemplate, getThemeSectionTemplate, getStartGameSectionTemplate } from './settings-templates';
 
 /** Maps theme button ids to the feedback icon shown once selected. */
 const THEME_ICONS: Record<string, string> = {
@@ -29,6 +29,8 @@ export function initSettingsSection(): void {
   renderSection('[theme-section]', getThemeSectionTemplate);
   renderSection('[choose-player-section]', getChoosePlayerSectionTemplate);
   renderSection('[board-size-section]', getBoardSizeSectionTemplate);
+  renderSection('[selected-theme-section]', getSelectedThemeSectionTemplate);
+  renderSection('[start-game-section]', getStartGameSectionTemplate);
 }
 
 /**

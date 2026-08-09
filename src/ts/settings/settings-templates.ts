@@ -88,3 +88,46 @@ export function getBoardSizeSectionTemplate(): string {
     </section>
   `;
 }
+
+/**
+ * Returns the feedback markup shown until all required settings are selected.
+ *
+ * @returns The HTML string for the settings feedback section.
+ */
+export function getSelectedThemeSectionTemplate(): string {
+  return `
+          <section class="settings_feedback" id="settingsFeedback">
+          <h3>
+            Please <br>
+            choose a theme,<br>
+            player, and board size <br>
+            to start the game.
+          </h3>
+        </section>
+  `;
+}
+
+/**
+ * Returns the selected-settings summary and start control markup.
+ *
+ * @returns The HTML string for the start-game section.
+ */
+export function getStartGameSectionTemplate(): string {
+  return `
+        <section class="start_game">
+          <div class="start_game_feedback">
+            <div id="selectedGameTheme">Game theme</div>
+          </div>
+          <div class="start_game_slash" id="themePlayerDivider"></div>
+          <div class="start_game_feedback">
+            <div id="selectedPlayer">Player</div>
+          </div>
+          <div class="start_game_slash" id="playerBoardDivider"></div>
+          <div class="start_game_feedback">
+            <div id="selectedBoardSize">Board size</div>
+          </div>
+          <img id="startDefaultIcon" src="../assets/icons/start_default.svg" alt="Start Default Img">
+          <button id="startGameButton" class="startGameButton" hidden><img src="../assets/icons/play-button.svg" alt="Start Game Img">Start</button>
+        </section>
+  `;
+}
