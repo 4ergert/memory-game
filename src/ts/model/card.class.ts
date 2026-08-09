@@ -27,6 +27,7 @@ export class Card {
   flip(): void {
     this.flipped = true;
     this.element.classList.add('is-flipped');
+    void new Audio('/assets/audio/flipcard.mp3').play()?.catch(() => undefined);
   }
 
   /**
